@@ -1,0 +1,2 @@
+export const SET_Login_MESSAGE = 'SET_Login_MESSAGE';
+export const SET_AUTHENTICATED = 'SET_AUTHENTICATED';
