@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import notebook.entity.Product;
@@ -22,6 +24,11 @@ public class ProductController {
 	@GetMapping(value = "/api/products/get")
 	public List<Product> getAllProducts() {
 		return productService.findAll();
+	}
+
+	@PostMapping(value = "/api/product/create")
+	public long createPatient(@RequestBody Product product) {
+		return productService.save(product);
 	}
 
 }

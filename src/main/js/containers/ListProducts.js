@@ -7,6 +7,7 @@ import Product from '../components/Product/Product'
 import Table from '../components/Table/Table'
 import productFields from '../components/Product/productFields'
 import Loader from '../components/Loader/Loader'
+import ProductForm from '../components/Product/ProductForm/ProductForm'
 
 class ListProducts extends React.Component {
 
@@ -22,6 +23,10 @@ class ListProducts extends React.Component {
       const {
           products
       } = this.props
+
+      const {
+          addProduct
+      } = this.props.productsActions
 
       let template = 'No products';
 
@@ -40,9 +45,13 @@ class ListProducts extends React.Component {
             products.isFetching
             ? <Loader/>
             :
-            <Table headerFields={productFields}>
-                <tbody>{template}</tbody>
-            </Table>
+            <div>
+                <Table headerFields={productFields}>
+                    <tbody>{template}</tbody>
+                </Table>
+
+                <ProductForm addProduct={addProduct}/>
+            </div>
         }
         </div>
     )

@@ -11,5 +11,9 @@ export default handleActions({
          ...state,
          listProducts: [...action.payload],
          isFetching: false
+    }),
+    [productsConsts.ADD_PRODUCT]: (state, action) => ({
+        ...state,
+        listProducts: [...state.listProducts, action.payload]
     })
 }, initialState)
