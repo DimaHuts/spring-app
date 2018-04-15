@@ -8,9 +8,9 @@ const initialState = {
 
 export default handleActions({
     [productsConsts.GET_ALL_PRODUCTS]: (state, action) => ({
-         ...state,
-         listProducts: [...action.payload],
-         isFetching: false
+        ...state,
+        listProducts: [...action.payload.body],
+        isFetching: false
     }),
     [productsConsts.ADD_PRODUCT]: (state, action) => ({
         ...state,

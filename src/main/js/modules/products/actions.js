@@ -1,5 +1,7 @@
-import * as productsConsts from './constants'
-import {createAction} from 'redux-actions'
+import * as constants from './constants'
+import * as api from '../../api/products'
 
-export const getAllProducts = createAction(productsConsts.GET_ALL_PRODUCTS);
-export const addProduct = createAction(productsConsts.ADD_PRODUCT);
+export const getAllProducts = () => ({
+    type: constants.GET_ALL_PRODUCTS,
+    payload: api.getAllProducts()
+})

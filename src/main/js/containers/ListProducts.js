@@ -12,10 +12,7 @@ import ProductForm from '../components/Product/ProductForm/ProductForm'
 class ListProducts extends React.Component {
 
   componentDidMount = () => {
-      productsApi.getAllProducts()
-          .then(res => {
-              this.props.productsActions.getAllProducts(res.body)
-          })
+      this.props.productsActions.getAllProducts()
   }
 
   render() {
