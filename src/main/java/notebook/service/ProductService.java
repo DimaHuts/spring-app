@@ -6,5 +6,5 @@ import notebook.entity.Product;
 
 public interface ProductService {
 	List<Product> findAll();
-	long save(Product product);
+	long saveProduct(Product product);
 }
