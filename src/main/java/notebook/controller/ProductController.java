@@ -26,7 +26,7 @@ public class ProductController {
 
 	@PostMapping(value = "/api/product/create")
 	@CrossOrigin(origins = "http://localhost:8000")
-	public long createPatient(@RequestBody Product product) {
+	public Product createPatient(@RequestBody Product product) {
 		return productService.saveProduct(product);
 	}
 

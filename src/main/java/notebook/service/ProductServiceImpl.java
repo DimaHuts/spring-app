@@ -3,6 +3,8 @@ package notebook.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.reactive.function.ServerResponse;
+
 import org.springframework.stereotype.Service;
 
 import notebook.entity.Product;
@@ -22,10 +24,12 @@ public class ProductServiceImpl implements ProductService {
 		return productRepository.findAll();
 	}
 
-	public long saveProduct(Product product) {
+	public
+
+	public Product saveProduct(Product product) {
 		productRepository.save(product);
 
-		return product.getId();
+		return product;
 	}
 
 }
