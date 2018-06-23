@@ -19,15 +19,18 @@ public class ProductController {
 	}
 
 	@GetMapping(value = "/api/products/get")
-	@CrossOrigin(origins = "http://localhost:8000")
 	public List<Product> getAllProducts() {
 		return productService.findAll();
 	}
 
 	@PostMapping(value = "/api/product/create")
-	@CrossOrigin(origins = "http://localhost:8000")
 	public Product createPatient(@RequestBody Product product) {
 		return productService.saveProduct(product);
 	}
+
+  @PostMapping(value = "/api/product/update")
+  public Product updatePatient(@RequestBody Product product) {
+    return productService.saveProduct(product);
+  }
 
 }

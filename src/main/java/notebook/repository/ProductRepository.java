@@ -8,8 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
-
-    @Query("select p from Product p")
-    List<Product> findAllProducts();
-
+  @Query("select p from Product p")
+  List<Product> findAllProducts();
 }
