@@ -12,7 +12,7 @@ import notebook.repository.ProductRepository;
 public class ProductServiceImpl implements ProductService {
 
 	private ProductRepository productRepository;
-	
+
 	@Autowired
 	public ProductServiceImpl(ProductRepository productRepository) {
 		this.productRepository = productRepository;
@@ -26,6 +26,12 @@ public class ProductServiceImpl implements ProductService {
 		productRepository.save(product);
 
 		return product;
+	}
+
+	public long deleteProduct(Long id) {
+		productRepository.deleteById(id);
+
+		return id;
 	}
 
 }
