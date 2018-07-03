@@ -17,9 +17,9 @@ public class RegistrationController {
     this.userService = userService;
   }
 
-  @PostMapping("/registration")
+  @PostMapping("/register")
   public void createNewUser(@RequestBody User user) {
-    User userExists = userService.findUserByEmail(user.getEmail());
+//    User userExists = userService.findUserByEmail(user.getEmail());
 
     userService.saveUser(user);
   }
