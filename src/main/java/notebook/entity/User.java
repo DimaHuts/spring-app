@@ -15,13 +15,12 @@ public class User {
   private String email;
 
   @Column(name = "password")
-  @Transient
   private String password;
 
-  @Column(name = "name")
-  private String name;
+  @Column(name = "firstName")
+  private String firstName;
 
-  @Column(name = "last_name")
+  @Column(name = "lastName")
   private String lastName;
 
   @Column(name = "active")
@@ -45,14 +44,6 @@ public class User {
 
   public void setPassword(String password) {
     this.password = password;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
   }
 
   public String getLastName() {
@@ -89,5 +80,13 @@ public class User {
 
   public User() {
     this.setActive(0);
+  }
+
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
   }
 }
