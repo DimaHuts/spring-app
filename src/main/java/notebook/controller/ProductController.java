@@ -10,6 +10,7 @@ import notebook.entity.Product;
 import notebook.service.ProductService;
 
 @RestController
+@RequestMapping("/api")
 public class ProductController {
 
 	private ProductService productService;
@@ -19,22 +20,22 @@ public class ProductController {
 		this.productService = productService;
 	}
 
-	@GetMapping("/api/products/get")
+	@GetMapping("/products/get")
 	public List<Product> getAllProducts() {
 		return productService.findAll();
 	}
 	
-	@PostMapping("/api/product/create")
+	@PostMapping("/product/create")
 	public Product createPatient(@RequestBody Product product) {
 		return productService.saveProduct(product);
 	}
 
-	@PostMapping("/api/product/update")
+	@PostMapping("/product/update")
 	public Product updatePatient(@RequestBody Product product) {
 		return productService.saveProduct(product);
 	}
 	
-	@PostMapping("/api/product/delete")
+	@PostMapping("/product/delete")
 	public long updatePatient(@RequestBody DeleteByIdRequestWrapper requestWrapper) {
 		return productService.deleteProduct(requestWrapper.getId());
 	}

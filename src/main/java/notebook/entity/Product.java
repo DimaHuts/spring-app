@@ -1,10 +1,11 @@
 package notebook.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Table(name = "Product")
 @Entity
-public class Product {
+public class Product implements Serializable {
 	
 	@Id
 	@SequenceGenerator(name = "product_id_seq", sequenceName = "product_id_seq", allocationSize = 1)
