@@ -15,14 +15,20 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
   private final UserRepository userRepository;
   private final RoleRepository roleRepository;
-  private final BCryptPasswordEncoder bCryptPasswordEncoder;
+//  private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+//  @Autowired
+//  public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository,
+//                         BCryptPasswordEncoder bCryptPasswordEncoder) {
+//    this.userRepository = userRepository;
+//    this.roleRepository = roleRepository;
+//    this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+//  }
 
   @Autowired
-  public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository,
-                         BCryptPasswordEncoder bCryptPasswordEncoder) {
+  public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
     this.userRepository = userRepository;
     this.roleRepository = roleRepository;
-    this.bCryptPasswordEncoder = bCryptPasswordEncoder;
   }
 
   @Override
@@ -32,8 +38,6 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public void saveUser(User user) {
-    user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-    user.setRoles(new HashSet<>(Collections.singletonList(roleRepository.findByRole("ADMIN"))));
     userRepository.save(user);
   }
 

@@ -1,8 +1,9 @@
 package notebook.entity;
 
+import notebook.service.FirstConfigureUser;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
 
 @Entity
 @Table(name = "user")
@@ -27,9 +28,9 @@ public class User implements Serializable {
   @Column(name = "active")
   private int active;
 
-  @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-  private Set<Role> roles;
+//  @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//  @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+  private byte[] roles;
 
   public int getId() {
     return id;
@@ -71,14 +72,6 @@ public class User implements Serializable {
     this.active = active;
   }
 
-  public Set<Role> getRoles() {
-    return roles;
-  }
-
-  public void setRoles(Set<Role> roles) {
-    this.roles = roles;
-  }
-
   public User() {
     this.setActive(0);
   }
@@ -89,5 +82,18 @@ public class User implements Serializable {
 
   public void setFirstName(String firstName) {
     this.firstName = firstName;
+  }
+
+  @PrePersist
+  public void configureUser() {
+    FirstConfigureUser.configureUser(this);
+  }
+
+  public byte[] getRoles() {
+    return roles;
+  }
+
+  public void setRoles(byte[] roles) {
+    this.roles = roles;
   }
 }
