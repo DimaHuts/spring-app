@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import notebook.entity.Product;
-import notebook.service.ProductService;
+import notebook.service.product.ProductService;
 
 @RestController
 @RequestMapping("/api")

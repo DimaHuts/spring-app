@@ -1,7 +1,7 @@
 package notebook.controller;
 
 import notebook.entity.User;
-import notebook.service.UserService;
+import notebook.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

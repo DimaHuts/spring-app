@@ -1,4 +1,4 @@
-package notebook.service;
+package notebook.service.user;
 
 import notebook.entity.User;
 

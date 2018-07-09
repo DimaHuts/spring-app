@@ -1,4 +1,4 @@
-package notebook.service;
+package notebook.service.product;
 
 import java.util.List;
 

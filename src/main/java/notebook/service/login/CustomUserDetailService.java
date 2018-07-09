@@ -1,7 +1,7 @@
-package notebook.service;
+package notebook.service.login;
 
-import notebook.entity.Role;
 import notebook.entity.User;
+import notebook.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -28,7 +28,6 @@ public class CustomUserDetailService implements UserDetailsService {
   @Override
   public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
     User user = userService.findUserByEmail(email);
-    System.out.println(email);
 
     if (user == null) {
       throw new UsernameNotFoundException(
@@ -42,10 +41,10 @@ public class CustomUserDetailService implements UserDetailsService {
   private Set<GrantedAuthority> getAuthorities(User user){
     Set<GrantedAuthority> authorities = new HashSet<>();
 
-//    for(Role role : user.getRoles()) {
-//      GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getRole());
-//      authorities.add(grantedAuthority);
-//    }
+    for(byte role : user.getRoles()) {
+      GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(Byte.toString(role));
+      authorities.add(grantedAuthority);
+    }
 
     return authorities;
   }

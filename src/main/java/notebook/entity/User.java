@@ -1,6 +1,6 @@
 package notebook.entity;
 
-import notebook.service.FirstConfigureUser;
+import notebook.service.user.FirstConfigureUser;
 
 import javax.persistence.*;
 import java.io.Serializable;
