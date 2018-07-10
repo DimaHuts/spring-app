@@ -9,5 +9,5 @@ public interface UserService {
   User findUserByEmail(String email);
   void saveUser(User user);
   List<User> findAll();
-  Integer findUserIdByEmail(@Param("email") String email);
+  Integer findUserIdByEmail(String email);
 }
