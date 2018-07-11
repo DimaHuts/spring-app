@@ -4,8 +4,10 @@ import notebook.entity.User;
 import notebook.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -28,7 +30,7 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public List<User> findAll() {
-    return userRepository.findAll();
+    return userRepository.findAllUsers();
   }
 
   @Override
