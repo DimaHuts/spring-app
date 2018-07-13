@@ -1,28 +1,27 @@
 package notebook.service.login;
 
 import notebook.entity.User;
+import notebook.factory.SecurityUserInterface;
 import notebook.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
-import java.util.Set;
-
 
 @Service
 @Transactional
 public class CustomUserDetailService implements UserDetailsService {
   private final UserService userService;
+  private final SecurityUserInterface securityUserInterface;
 
   @Autowired
-  public CustomUserDetailService(UserService userService) {
+  public CustomUserDetailService(UserService userService,
+                                 SecurityUserInterface securityUserInterface) {
     this.userService = userService;
+    this.securityUserInterface = securityUserInterface;
   }
 
   @Override
@@ -34,18 +33,7 @@ public class CustomUserDetailService implements UserDetailsService {
         "No user found with username: "+ email);
     }
 
-    return new org.springframework.security.core.userdetails.User(
-      user.getEmail(), user.getPassword(), getAuthorities(user));
+    return securityUserInterface.getConfiguredSecurityUser(user);
   }
 
-  private Set<GrantedAuthority> getAuthorities(User user){
-    Set<GrantedAuthority> authorities = new HashSet<>();
-
-    for(byte role : user.getRoles()) {
-      GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(Byte.toString(role));
-      authorities.add(grantedAuthority);
-    }
-
-    return authorities;
-  }
 }
