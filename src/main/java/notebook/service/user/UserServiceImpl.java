@@ -1,5 +1,6 @@
 package notebook.service.user;
 
+import notebook.controller.wrappers.LoginRequestWrapper;
 import notebook.entity.User;
 import notebook.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,14 @@ public class UserServiceImpl implements UserService {
   @Override
   public Integer findUserIdByEmail(String email) {
     return userRepository.findUserIdByEmail(email);
+  }
+
+  @Override
+  public User login(LoginRequestWrapper loginRequestWrapper) {
+    return userRepository.login(
+            loginRequestWrapper.getUserLogin(),
+            loginRequestWrapper.getUserPassword()
+    );
   }
 
 }

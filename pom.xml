@@ -54,12 +54,15 @@
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
+			<version>2.6</version>
 		</dependency>
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt</artifactId>
+			<version>0.6.0</version>
 		</dependency>
-    </dependencies>
+
+	</dependencies>
 
 	<build>
 		<plugins>
