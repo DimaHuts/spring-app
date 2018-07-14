@@ -96,4 +96,5 @@ public class User implements Serializable {
   public void setRoles(byte[] roles) {
     this.roles = roles;
   }
+
 }
