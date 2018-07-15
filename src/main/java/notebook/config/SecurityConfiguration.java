@@ -50,19 +50,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity httpSecurity) throws Exception {
-    httpSecurity.csrf()
-            .disable()
-            .exceptionHandling()
-            .authenticationEntryPoint(restAuthenticationEntryPoint)
-            .and()
-            .authorizeRequests()
-            .antMatchers("/rest/**","/socket/**").authenticated()
-            .and()
-            .formLogin()
-            .successHandler(authenticationSuccessHandler)
-            .failureHandler(new MyAuthenticationFailureHandler())
-            .and()
-            .logout().logoutSuccessHandler(logoutSuccessHandler);
+    httpSecurity.cors().and().csrf()
+
 //    httpSecurity.
 //      authorizeRequests()
 //      .antMatchers("/api/users/exist/email").permitAll()
