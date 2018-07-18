@@ -3,7 +3,6 @@ package notebook.service.user;
 import notebook.controller.wrappers.LoginRequestWrapper;
 import notebook.entity.User;
 import notebook.repository.UserRepository;
-import notebook.service.common.CryptPassword;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,13 +38,11 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public User login(String login, String rawPassword) {
-    User user = userRepository.findByEmail(login);
-
-    if (CryptPassword.isEqualPasswords(rawPassword, user.getPassword())) {
-      return user;
-    }
-
-    return null;
+  public User login(LoginRequestWrapper loginRequestWrapper) {
+    return userRepository.login(
+            loginRequestWrapper.getUserLogin(),
+            loginRequestWrapper.getUserPassword()
+    );
   }
+
 }

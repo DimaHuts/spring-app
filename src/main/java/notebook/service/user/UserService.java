@@ -14,5 +14,5 @@ public interface UserService {
 
   Integer findUserIdByEmail(String email);
 
-  User login(String login, String rawPassword);
+  User login(LoginRequestWrapper loginRequestWrapper);
 }
