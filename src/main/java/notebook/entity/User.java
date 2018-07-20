@@ -1,7 +1,5 @@
 package notebook.entity;
 
-import notebook.service.user.FirstConfigureUser;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -82,11 +80,6 @@ public class User implements Serializable {
 
   public void setFirstName(String firstName) {
     this.firstName = firstName;
-  }
-
-  @PrePersist
-  public void configureUser() {
-    FirstConfigureUser.configureUser(this);
   }
 
   public byte[] getRoles() {

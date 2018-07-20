@@ -20,6 +20,7 @@ public class LoginController {
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginRequestWrapper reqWrapper) {
+        System.out.println("login");
         authenticationManager.authenticate(
                 reqWrapper.getUserLogin(), reqWrapper.getUserPassword()
         );

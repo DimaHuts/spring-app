@@ -2,6 +2,7 @@ package notebook.config;
 
 import notebook.security.CustomLogoutSuccessHandler;
 import notebook.security.RestAuthenticationEntryPoint;
+import notebook.service.authentication.CustomAuthenticationManager;
 import notebook.service.authentication.CustomUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

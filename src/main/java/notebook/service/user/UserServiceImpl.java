@@ -1,9 +1,7 @@
 package notebook.service.user;
 
-import notebook.controller.wrappers.LoginRequestWrapper;
 import notebook.entity.User;
 import notebook.repository.UserRepository;
-import notebook.service.common.CryptPassword;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +17,7 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public User findUserByEmail(String email) {
+  public User findUserByEmail(final String email) {
     return userRepository.findByEmail(email);
   }
 
@@ -37,16 +35,4 @@ public class UserServiceImpl implements UserService {
   public Integer findUserIdByEmail(String email) {
     return userRepository.findUserIdByEmail(email);
   }
-
-  @Override
-  public User login(String login, String rawPassword) {
-    User user = userRepository.findByEmail(login);
-
-    if (CryptPassword.isEqualPasswords(rawPassword, user.getPassword())) {
-      return user;
-    }
-
-    return null;
-  }
-
 }

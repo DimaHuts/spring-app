@@ -1,6 +1,5 @@
 package notebook.service.user;
 
-import notebook.controller.wrappers.LoginRequestWrapper;
 import notebook.entity.User;
 
 import java.util.List;
@@ -13,6 +12,4 @@ public interface UserService {
   List<User> findAll();
 
   Integer findUserIdByEmail(String email);
-
-  User login(String login, String rawPassword);
 }
