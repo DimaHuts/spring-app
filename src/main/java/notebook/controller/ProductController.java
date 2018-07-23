@@ -4,6 +4,7 @@ import java.util.List;
 
 import notebook.controller.wrappers.DeleteByIdRequestWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.*;
 
 import notebook.entity.Product;
@@ -13,30 +14,38 @@ import notebook.service.product.ProductService;
 @RequestMapping("/api/products")
 public class ProductController {
 
-	private ProductService productService;
+	private final ApplicationContext context;
 
 	@Autowired
-	public ProductController(ProductService productService) {
-		this.productService = productService;
+	public ProductController(ApplicationContext context) {
+		this.context = context;
 	}
 
 	@GetMapping("/get")
 	public List<Product> getAllProducts() {
-		return productService.findAll();
+		return context
+      .getBean(ProductService.class)
+      .findAll();
 	}
 	
 	@PostMapping("/create")
 	public Product createPatient(@RequestBody Product product) {
-		return productService.saveProduct(product);
+		return context
+      .getBean(ProductService.class)
+      .saveProduct(product);
 	}
 
 	@PostMapping("/update")
 	public Product updatePatient(@RequestBody Product product) {
-		return productService.saveProduct(product);
+		return context
+      .getBean(ProductService.class)
+      .saveProduct(product);
 	}
 	
 	@PostMapping("/delete")
 	public long updatePatient(@RequestBody DeleteByIdRequestWrapper requestWrapper) {
-		return productService.deleteProduct(requestWrapper.getId());
+		return context
+      .getBean(ProductService.class)
+      .deleteProduct(requestWrapper.getId());
 	}
 }

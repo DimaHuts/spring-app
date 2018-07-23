@@ -4,6 +4,7 @@ import notebook.controller.wrappers.ExistUserWrapper;
 import notebook.entity.User;
 import notebook.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,20 +13,24 @@ import java.util.List;
 @RequestMapping("/api/users")
 public class UsersController {
 
-    private final UserService userService;
+  private final ApplicationContext context;
 
-    @Autowired
-    public UsersController(UserService userService) {
-        this.userService = userService;
-    }
+  @Autowired
+  public UsersController(ApplicationContext context) {
+    this.context = context;
+  }
 
-    @PostMapping("/exist/email")
+  @PostMapping("/exist/email")
     public Integer checkExistUser(@RequestBody ExistUserWrapper user) {
-        return userService.findUserIdByEmail(user.getEmail());
+        return context
+          .getBean(UserService.class)
+          .findUserIdByEmail(user.getEmail());
     }
 
     @GetMapping("/getAll")
     public List<User> getAllUsers() {
-        return userService.findAll();
+        return context
+          .getBean(UserService.class)
+          .findAll();
     }
 }
