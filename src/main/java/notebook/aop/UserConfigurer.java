@@ -2,7 +2,6 @@ package notebook.aop;
 
 import notebook.entity.User;
 import notebook.service.user.FirstConfigureUserInterface;
-import notebook.service.user.UserService;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -9,7 +9,7 @@ public class User implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "user_id")
-  private int id;
+  private long id;
 
   @Column(name = "email", unique = true)
   private String email;
@@ -23,18 +23,13 @@ public class User implements Serializable {
   @Column(name = "lastName")
   private String lastName;
 
-  @Column(name = "active")
-  private int active;
-
-//  @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//  @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
   private byte[] roles;
 
-  public int getId() {
+  public long getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(long id) {
     this.id = id;
   }
 
@@ -60,18 +55,6 @@ public class User implements Serializable {
 
   public void setEmail(String email) {
     this.email = email;
-  }
-
-  public int getActive() {
-    return active;
-  }
-
-  public void setActive(int active) {
-    this.active = active;
-  }
-
-  public User() {
-    this.setActive(0);
   }
 
   public String getFirstName() {

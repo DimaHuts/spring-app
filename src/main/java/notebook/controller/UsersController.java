@@ -1,7 +1,10 @@
 package notebook.controller;
 
 import notebook.controller.wrappers.ExistUserWrapper;
+import notebook.dto.UserDto;
 import notebook.entity.User;
+import notebook.service.common.ContextManagerInterface;
+import notebook.service.common.dto.Converter;
 import notebook.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -22,15 +25,24 @@ public class UsersController {
 
   @PostMapping("/exist/email")
     public Integer checkExistUser(@RequestBody ExistUserWrapper user) {
-        return context
-          .getBean(UserService.class)
-          .findUserIdByEmail(user.getEmail());
+      return context
+        .getBean(UserService.class)
+        .findUserIdByEmail(user.getEmail());
     }
 
     @GetMapping("/getAll")
     public List<User> getAllUsers() {
-        return context
-          .getBean(UserService.class)
-          .findAll();
+      return context
+        .getBean(UserService.class)
+        .findAll();
+    }
+
+    @GetMapping("/get/current")
+    public UserDto getCurrentUser() {
+      return (UserDto)Converter.convert(
+        context
+          .getBean(ContextManagerInterface.class)
+          .getUserFromContext(),
+        new UserDto());
     }
 }

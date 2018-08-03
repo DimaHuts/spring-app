@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 
 public interface SecurityUserInterface {
-    UserDetails getConfiguredSecurityUser(User user);
+  UserDetails getConfiguredSecurityUser(User user);
 
-    Collection<? extends GrantedAuthority> getSecurityUserAuthority(User user);
+  Collection<? extends GrantedAuthority> getSecurityUserAuthority(User user);
 }
