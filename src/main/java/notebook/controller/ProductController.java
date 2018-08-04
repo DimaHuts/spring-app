@@ -3,6 +3,7 @@ package notebook.controller;
 import java.util.List;
 
 import notebook.controller.wrappers.DeleteByIdRequestWrapper;
+import notebook.controller.wrappers.ProductUserIdWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.*;
@@ -29,14 +30,14 @@ public class ProductController {
 	}
 	
 	@PostMapping("/create")
-	public Product createPatient(@RequestBody Product product) {
+	public Product createProduct(@RequestBody Product product) {
 		return context
       .getBean(ProductService.class)
       .saveProduct(product);
 	}
 
 	@PostMapping("/update")
-	public Product updatePatient(@RequestBody Product product) {
+	public Product updateProduct(@RequestBody Product product) {
 		return context
       .getBean(ProductService.class)
       .saveProduct(product);
@@ -48,4 +49,10 @@ public class ProductController {
       .getBean(ProductService.class)
       .deleteProduct(requestWrapper.getId());
 	}
+
+	public List<Product> getPruductByUser(@RequestBody ProductUserIdWrapper productUserIdWrapper ) {
+	  return context
+      .getBean(ProductService.class)
+      .getProductsByUser(productUserIdWrapper.getUserId());
+  }
 }

@@ -10,4 +10,6 @@ public interface ProductService {
 	Product saveProduct(Product product);
 	
 	long deleteProduct(Long id);
+
+	List<Product> getProductsByUser(long userId);
 }
