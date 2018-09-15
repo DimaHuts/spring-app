@@ -31,9 +31,9 @@ public class ProductController {
 	
 	@PostMapping("/create")
 	public Product createProduct(@RequestBody Product product) {
-		return context
-      .getBean(ProductService.class)
-      .saveProduct(product);
+		ProductService productService = context.getBean(ProductService.class);
+
+		return productService.saveProduct(product);
 	}
 
 	@PostMapping("/update")

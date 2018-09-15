@@ -11,18 +11,18 @@ public class Product implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
 	private long id;
-	
+
 	@Column(name = "name")
 	private String name;
-	
+
 	@Column(name = "description")
 	private String description;
-	
+
 	@Column(name = "price")
 	private double price;
 
 	@Column(name = "userId")
-  private long userId;
+  	private long userId;
 
 	public long getId() {
 		return id;

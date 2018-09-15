@@ -21,6 +21,6 @@ public class FirstConfigureProduct implements FirstConfigureProductInterface {
   public void configureProduct(Product product) {
     User currentUser = context.getBean(ContextManagerInterface.class).getUserFromContext();
 
-    product.setId(currentUser.getId());
+    product.setUserId(currentUser.getId());
   }
 }
