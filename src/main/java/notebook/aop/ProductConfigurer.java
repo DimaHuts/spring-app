@@ -1,7 +1,6 @@
 package notebook.aop;
 
 import notebook.entity.Product;
-import notebook.service.product.FirstConfigureProduct;
 import notebook.service.product.FirstConfigureProductInterface;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -22,7 +21,7 @@ public class ProductConfigurer {
 
   @Before("execution(* notebook.controller.ProductController.createProduct(..)) && args(product)")
   public void configureProductBeforeCreating(Product product) {
-    var firstConfigureProduct = context.getBean(FirstConfigureProduct.class);
+    var firstConfigureProduct = context.getBean(FirstConfigureProductInterface.class);
 
     firstConfigureProduct.configureProduct(product);
   }

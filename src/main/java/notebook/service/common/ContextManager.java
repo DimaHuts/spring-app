@@ -17,11 +17,9 @@ public class ContextManager implements ContextManagerInterface {
 
   @Override
   public User getUserFromContext() {
-    return context
-      .getBean(UserService.class)
-      .findUserByEmail(
-        getPrincipal()
-          .getUsername()
-      );
+    var userService = context.getBean(UserService.class);
+    var userName = getPrincipal().getUsername();
+
+    return userService.findUserByEmail(userName);
   }
 }

@@ -25,24 +25,23 @@ public class UsersController {
 
   @PostMapping("/exist/email")
     public Integer checkExistUser(@RequestBody ExistUserWrapper user) {
-      return context
-        .getBean(UserService.class)
-        .findUserIdByEmail(user.getEmail());
+      var userService = context.getBean(UserService.class);
+
+      return userService.findUserIdByEmail(user.getEmail());
     }
 
     @GetMapping("/getAll")
     public List<User> getAllUsers() {
-      return context
-        .getBean(UserService.class)
-        .findAll();
+      var userService = context.getBean(UserService.class);
+
+      return userService.findAll();
     }
 
     @GetMapping("/get/current")
     public UserDto getCurrentUser() {
-      return (UserDto)Converter.convert(
-        context
-          .getBean(ContextManagerInterface.class)
-          .getUserFromContext(),
-        new UserDto());
+      var contextManager = context.getBean(ContextManagerInterface.class);
+      var userFromContext = contextManager.getUserFromContext();
+
+      return (UserDto)Converter.convert(userFromContext, new UserDto());
     }
 }

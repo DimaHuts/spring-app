@@ -21,10 +21,10 @@ public class LoginController {
 
   @PostMapping("/login")
   public ResponseEntity<String> login(@RequestBody LoginRequestWrapper reqWrapper) {
-    context
-      .getBean(AuthenticationManagerInterface.class)
-      .authenticate(reqWrapper.getUserLogin(), reqWrapper.getUserPassword());
+    var authenticationManager = context.getBean(AuthenticationManagerInterface.class);
 
-      return new ResponseEntity<>("Success", HttpStatus.OK);
+    authenticationManager.authenticate(reqWrapper.getUserLogin(), reqWrapper.getUserPassword());
+
+    return new ResponseEntity<>("Success", HttpStatus.OK);
   }
 }

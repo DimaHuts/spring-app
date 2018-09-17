@@ -21,8 +21,8 @@ public class UserConfigurer {
 
   @Before("execution(* notebook.controller.RegistrationController.createNewUser(..)) && args(user)")
   public void configureUserAfterRegistration(User user) {
-    context
-      .getBean(FirstConfigureUserInterface.class)
-      .configureUser(user);
+    var firstConfigureUser = context.getBean(FirstConfigureUserInterface.class);
+
+    firstConfigureUser.configureUser(user);
   }
 }

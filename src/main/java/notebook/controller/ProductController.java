@@ -24,35 +24,35 @@ public class ProductController {
 
 	@GetMapping("/get")
 	public List<Product> getAllProducts() {
-		return context
-      .getBean(ProductService.class)
-      .findAll();
+		var productService = context.getBean(ProductService.class);
+
+		return productService.findAll();
 	}
 	
 	@PostMapping("/create")
 	public Product createProduct(@RequestBody Product product) {
-		ProductService productService = context.getBean(ProductService.class);
+		var productService = context.getBean(ProductService.class);
 
 		return productService.saveProduct(product);
 	}
 
 	@PostMapping("/update")
 	public Product updateProduct(@RequestBody Product product) {
-		return context
-      .getBean(ProductService.class)
-      .saveProduct(product);
+    var productService = context.getBean(ProductService.class);
+
+		return productService.saveProduct(product);
 	}
 	
 	@PostMapping("/delete")
 	public long updatePatient(@RequestBody DeleteByIdRequestWrapper requestWrapper) {
-		return context
-      .getBean(ProductService.class)
-      .deleteProduct(requestWrapper.getId());
+    var productService = context.getBean(ProductService.class);
+
+		return productService.deleteProduct(requestWrapper.getId());
 	}
 
 	public List<Product> getPruductByUser(@RequestBody ProductUserIdWrapper productUserIdWrapper ) {
-	  return context
-      .getBean(ProductService.class)
-      .getProductsByUser(productUserIdWrapper.getUserId());
+    var productService = context.getBean(ProductService.class);
+
+	  return productService.getProductsByUser(productUserIdWrapper.getUserId());
   }
 }

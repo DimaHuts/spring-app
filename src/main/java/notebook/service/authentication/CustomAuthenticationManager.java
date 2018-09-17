@@ -19,14 +19,13 @@ public class CustomAuthenticationManager implements AuthenticationManagerInterfa
 
   @Override
   public void authenticate(String username, String password) {
+    var authenticationManager = context.getBean(AuthenticationManager.class);
+    var userAuthenticationObject = AuthenticationFactory.getAuthenticationObject(username, password);
+
+    var objectAuthentication = authenticationManager.authenticate(userAuthenticationObject);
+
     SecurityContextHolder
       .getContext()
-      .setAuthentication(
-        context
-          .getBean(AuthenticationManager.class)
-          .authenticate(
-            AuthenticationFactory.getAuthenticationObject(username, password)
-          )
-    );
+      .setAuthentication(objectAuthentication);
   }
 }

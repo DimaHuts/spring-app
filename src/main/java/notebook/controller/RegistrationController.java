@@ -20,8 +20,8 @@ public class RegistrationController {
 
   @PostMapping("/api/register")
   public void createNewUser(@RequestBody User user) {
-    context
-      .getBean(UserService.class)
-      .saveUser(user);
+    var userService = context.getBean(UserService.class);
+
+    userService.saveUser(user);
   }
 }

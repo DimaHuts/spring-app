@@ -19,29 +19,29 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public User findUserByEmail(final String email) {
-    return context
-      .getBean(UserRepository.class)
-      .findByEmail(email);
+    var userRepository = context.getBean(UserRepository.class);
+
+    return userRepository.findByEmail(email);
   }
 
   @Override
   public void saveUser(User user) {
-    context
-      .getBean(UserRepository.class)
-      .save(user);
+    var userRepository = context.getBean(UserRepository.class);
+
+    userRepository.save(user);
   }
 
   @Override
   public List<User> findAll() {
-    return context
-      .getBean(UserRepository.class)
-      .findAllUsers();
+    var userRepository = context.getBean(UserRepository.class);
+
+    return userRepository.findAllUsers();
   }
 
   @Override
   public Integer findUserIdByEmail(String email) {
-    return context
-      .getBean(UserRepository.class)
-      .findUserIdByEmail(email);
+    var userRepository = context.getBean(UserRepository.class);
+
+    return userRepository.findUserIdByEmail(email);
   }
 }

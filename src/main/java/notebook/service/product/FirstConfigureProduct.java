@@ -19,7 +19,9 @@ public class FirstConfigureProduct implements FirstConfigureProductInterface {
 
   @Override
   public void configureProduct(Product product) {
-    User currentUser = context.getBean(ContextManagerInterface.class).getUserFromContext();
+    var contextManager = context.getBean(ContextManagerInterface.class);
+
+    User currentUser = contextManager.getUserFromContext();
 
     product.setUserId(currentUser.getId());
   }
