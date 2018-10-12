@@ -4,8 +4,7 @@ import java.util.List;
 
 import notebook.controller.wrappers.DeleteByIdRequestWrapper;
 import notebook.controller.wrappers.ProductUserIdWrapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
+import notebook.service.common.BeanProvider;
 import org.springframework.web.bind.annotation.*;
 
 import notebook.entity.Product;
@@ -14,44 +13,36 @@ import notebook.service.product.ProductService;
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {
-
-	private final ApplicationContext context;
-
-	@Autowired
-	public ProductController(ApplicationContext context) {
-		this.context = context;
-	}
-
 	@GetMapping("/get")
 	public List<Product> getAllProducts() {
-		var productService = context.getBean(ProductService.class);
+		var productService = BeanProvider.getBean(ProductService.class);
 
 		return productService.findAll();
 	}
 	
 	@PostMapping("/create")
 	public Product createProduct(@RequestBody Product product) {
-		var productService = context.getBean(ProductService.class);
+		var productService = BeanProvider.getBean(ProductService.class);
 
 		return productService.saveProduct(product);
 	}
 
 	@PostMapping("/update")
 	public Product updateProduct(@RequestBody Product product) {
-    var productService = context.getBean(ProductService.class);
+    var productService = BeanProvider.getBean(ProductService.class);
 
 		return productService.saveProduct(product);
 	}
 	
 	@PostMapping("/delete")
 	public long updatePatient(@RequestBody DeleteByIdRequestWrapper requestWrapper) {
-    var productService = context.getBean(ProductService.class);
+    var productService = BeanProvider.getBean(ProductService.class);
 
 		return productService.deleteProduct(requestWrapper.getId());
 	}
 
 	public List<Product> getPruductByUser(@RequestBody ProductUserIdWrapper productUserIdWrapper ) {
-    var productService = context.getBean(ProductService.class);
+    var productService = BeanProvider.getBean(ProductService.class);
 
 	  return productService.getProductsByUser(productUserIdWrapper.getUserId());
   }

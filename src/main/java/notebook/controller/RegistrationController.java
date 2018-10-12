@@ -1,26 +1,17 @@
 package notebook.controller;
 
 import notebook.entity.User;
+import notebook.service.common.BeanProvider;
 import notebook.service.user.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class RegistrationController {
-
-  private final ApplicationContext context;
-
-  @Autowired
-  public RegistrationController(ApplicationContext context) {
-    this.context = context;
-  }
-
   @PostMapping("/api/register")
   public void createNewUser(@RequestBody User user) {
-    var userService = context.getBean(UserService.class);
+    var userService = BeanProvider.getBean(UserService.class);
 
     userService.saveUser(user);
   }
