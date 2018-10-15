@@ -33,6 +33,6 @@ public class UsersController {
     var contextManager = BeanProvider.getBean(ContextManagerInterface.class);
     var userFromContext = contextManager.getUserFromContext();
 
-    return (UserDto)Converter.convert(userFromContext, new UserDto());
+    return Converter.convert(userFromContext, UserDto.class);
   }
 }
