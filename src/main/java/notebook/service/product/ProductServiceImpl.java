@@ -2,7 +2,7 @@ package notebook.service.product;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import notebook.service.common.BeanProvider;
 import org.springframework.stereotype.Service;
 
 import notebook.entity.Product;
@@ -10,33 +10,29 @@ import notebook.repository.ProductRepository;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-
-	private ProductRepository productRepository;
-
-	@Autowired
-	public ProductServiceImpl(ProductRepository productRepository) {
-		this.productRepository = productRepository;
-	}
-
 	public List<Product> findAll() {
+		var productRepository = BeanProvider.getBean(ProductRepository.class);
 		return productRepository.findAllProducts();
 	}
 
 	public Product saveProduct(Product product) {
-		productRepository.save(product);
+    var productRepository = BeanProvider.getBean(ProductRepository.class);
+    productRepository.save(product);
 
 		return product;
 	}
 
 	public long deleteProduct(Long id) {
-		productRepository.deleteById(id);
+    var productRepository = BeanProvider.getBean(ProductRepository.class);
+    productRepository.deleteById(id);
 
 		return id;
 	}
 
 	@Override
 	public List<Product> getProductsByUser(long userId) {
-		return productRepository.findProductsByUser(userId);
+    var productRepository = BeanProvider.getBean(ProductRepository.class);
+    return productRepository.findProductsByUser(userId);
 	}
 
 }

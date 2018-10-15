@@ -15,24 +15,24 @@ import java.util.List;
 @RequestMapping("/api/users")
 public class UsersController {
   @PostMapping("/exist/email")
-    public Integer checkExistUser(@RequestBody ExistUserWrapper user) {
-      var userService = BeanProvider.getBean(UserService.class);
+  public Integer checkExistUser(@RequestBody ExistUserWrapper user) {
+    var userService = BeanProvider.getBean(UserService.class);
 
-      return userService.findUserIdByEmail(user.getEmail());
-    }
+    return userService.findUserIdByEmail(user.getEmail());
+  }
 
-    @GetMapping("/getAll")
-    public List<User> getAllUsers() {
-      var userService = BeanProvider.getBean(UserService.class);
+  @GetMapping("/getAll")
+  public List<User> getAllUsers() {
+    var userService = BeanProvider.getBean(UserService.class);
 
-      return userService.findAll();
-    }
+    return userService.findAll();
+  }
 
-    @GetMapping("/get/current")
-    public UserDto getCurrentUser() {
-      var contextManager = BeanProvider.getBean(ContextManagerInterface.class);
-      var userFromContext = contextManager.getUserFromContext();
+  @GetMapping("/get/current")
+  public UserDto getCurrentUser() {
+    var contextManager = BeanProvider.getBean(ContextManagerInterface.class);
+    var userFromContext = contextManager.getUserFromContext();
 
-      return (UserDto)Converter.convert(userFromContext, new UserDto());
-    }
+    return (UserDto)Converter.convert(userFromContext, new UserDto());
+  }
 }
