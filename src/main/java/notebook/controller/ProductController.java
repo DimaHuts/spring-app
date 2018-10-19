@@ -3,8 +3,8 @@ package notebook.controller;
 import java.util.List;
 
 import notebook.controller.wrappers.DeleteByIdRequestWrapper;
-import notebook.controller.wrappers.ProductUserIdWrapper;
 import notebook.service.common.BeanProvider;
+import notebook.service.common.CurrentUserFetcher;
 import org.springframework.web.bind.annotation.*;
 
 import notebook.entity.Product;
@@ -41,9 +41,17 @@ public class ProductController {
 		return productService.deleteProduct(requestWrapper.getId());
 	}
 
-	public List<Product> getPruductByUser(@RequestBody ProductUserIdWrapper productUserIdWrapper ) {
+	@GetMapping("/get/byUser/{userId}")
+	public List<Product> getProductsByUser(@PathVariable("userId") long userId) {
+    var authenticatedUser = CurrentUserFetcher.getCurrentUser();
+    var resultUserId = authenticatedUser.getId();
+
+    if (userId != 0) {
+      resultUserId = userId;
+    }
+
     var productService = BeanProvider.getBean(ProductService.class);
 
-	  return productService.getProductsByUser(productUserIdWrapper.getUserId());
+	  return productService.getProductsByUser(resultUserId);
   }
 }

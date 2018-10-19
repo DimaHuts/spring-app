@@ -5,6 +5,7 @@ import notebook.dto.UserDto;
 import notebook.entity.User;
 import notebook.service.common.BeanProvider;
 import notebook.service.common.ContextManagerInterface;
+import notebook.service.common.CurrentUserFetcher;
 import notebook.service.common.dto.Converter;
 import notebook.service.user.UserService;
 import org.springframework.web.bind.annotation.*;
@@ -30,9 +31,8 @@ public class UsersController {
 
   @GetMapping("/get/current")
   public UserDto getCurrentUser() {
-    var contextManager = BeanProvider.getBean(ContextManagerInterface.class);
-    var userFromContext = contextManager.getUserFromContext();
+    var authenticatedUser = CurrentUserFetcher.getCurrentUser();
 
-    return Converter.convert(userFromContext, UserDto.class);
+    return Converter.convert(authenticatedUser, UserDto.class);
   }
 }
