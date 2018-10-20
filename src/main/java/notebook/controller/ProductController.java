@@ -43,14 +43,9 @@ public class ProductController {
 
 	@GetMapping("/get/byUser/{userId}")
 	public List<Product> getProductsByUser(@PathVariable("userId") long userId) {
-    var authenticatedUser = CurrentUserFetcher.getCurrentUser();
-    var resultUserId = authenticatedUser.getId();
-
-    if (userId != 0) {
-      resultUserId = userId;
-    }
-
     var productService = BeanProvider.getBean(ProductService.class);
+
+    var resultUserId = productService.getUserIdForFetchProduct(userId);
 
 	  return productService.getProductsByUser(resultUserId);
   }

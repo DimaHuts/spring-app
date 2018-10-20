@@ -12,4 +12,6 @@ public interface ProductService {
 	long deleteProduct(Long id);
 
 	List<Product> getProductsByUser(long userId);
+
+	long getUserIdForFetchProduct(long userIdFromRequest);
 }
