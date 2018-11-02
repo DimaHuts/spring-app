@@ -14,7 +14,7 @@ public class ProductCategoryController {
 
   @PostMapping("/create")
   public long saveProductCategory(@RequestBody ProductCategory productCategory){
-    var productCategoryService = BeanProvider.getBean(ProductCategoryService.class);
+    ProductCategoryService productCategoryService = BeanProvider.getBean(ProductCategoryService.class);
 
     return productCategoryService.saveProductCategory(productCategory);
   }

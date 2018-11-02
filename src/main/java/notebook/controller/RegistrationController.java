@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class RegistrationController {
   @PostMapping("/api/register")
   public void createNewUser(@RequestBody User user) {
-    var userService = BeanProvider.getBean(UserService.class);
+    UserService userService = BeanProvider.getBean(UserService.class);
 
     userService.saveUser(user);
   }

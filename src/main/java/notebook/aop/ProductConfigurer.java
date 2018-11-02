@@ -13,7 +13,7 @@ public class ProductConfigurer {
 
   @Before("execution(* notebook.controller.ProductController.createProduct(..)) && args(product)")
   public void configureProductBeforeCreating(Product product) {
-    var firstConfigureProduct = BeanProvider.getBean(FirstConfigureProductInterface.class);
+    FirstConfigureProductInterface firstConfigureProduct = BeanProvider.getBean(FirstConfigureProductInterface.class);
 
     firstConfigureProduct.configureProduct(product);
   }

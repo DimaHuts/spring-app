@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 public class ProductCategoryServiceImpl implements ProductCategoryService {
   @Override
   public long saveProductCategory(ProductCategory productCategory) {
-    var productCategoryRepository = BeanProvider.getBean(ProductCategoryRepository.class);
+    ProductCategoryRepository productCategoryRepository = BeanProvider.getBean(ProductCategoryRepository.class);
 
-    var savedProductCategory = productCategoryRepository.save(productCategory);
+    ProductCategory savedProductCategory = productCategoryRepository.save(productCategory);
 
     return savedProductCategory.getCategoryId();
   }

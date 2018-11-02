@@ -5,7 +5,7 @@ import notebook.entity.User;
 public interface CurrentUserFetcher {
 
   static User getCurrentUser() {
-    var contextManager = BeanProvider.getBean(ContextManagerInterface.class);
+    ContextManagerInterface contextManager = BeanProvider.getBean(ContextManagerInterface.class);
     return contextManager.getUserFromContext();
   }
 }

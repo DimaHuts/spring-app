@@ -11,28 +11,28 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
   @Override
   public User findUserByEmail(final String email) {
-    var userRepository = BeanProvider.getBean(UserRepository.class);
+    UserRepository userRepository = BeanProvider.getBean(UserRepository.class);
 
     return userRepository.findByEmail(email);
   }
 
   @Override
   public void saveUser(User user) {
-    var userRepository = BeanProvider.getBean(UserRepository.class);
+    UserRepository userRepository = BeanProvider.getBean(UserRepository.class);
 
     userRepository.save(user);
   }
 
   @Override
   public List<User> findAll() {
-    var userRepository = BeanProvider.getBean(UserRepository.class);
+    UserRepository userRepository = BeanProvider.getBean(UserRepository.class);
 
     return userRepository.findAllUsers();
   }
 
   @Override
   public Integer findUserIdByEmail(String email) {
-    var userRepository = BeanProvider.getBean(UserRepository.class);
+    UserRepository userRepository = BeanProvider.getBean(UserRepository.class);
 
     return userRepository.findUserIdByEmail(email);
   }

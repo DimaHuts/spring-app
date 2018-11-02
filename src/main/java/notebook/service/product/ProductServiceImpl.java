@@ -2,6 +2,7 @@ package notebook.service.product;
 
 import java.util.List;
 
+import notebook.entity.User;
 import notebook.service.common.BeanProvider;
 import notebook.service.common.CurrentUserFetcher;
 import org.springframework.stereotype.Service;
@@ -12,19 +13,21 @@ import notebook.repository.ProductRepository;
 @Service
 public class ProductServiceImpl implements ProductService {
 	public List<Product> findAll() {
-		var productRepository = BeanProvider.getBean(ProductRepository.class);
+		ProductRepository productRepository = BeanProvider.getBean(ProductRepository.class);
 		return productRepository.findAllProducts();
 	}
 
-	public Product saveProduct(Product product) {
-    var productRepository = BeanProvider.getBean(ProductRepository.class);
-    productRepository.save(product);
+	public Product saveProduct(Product product, List<Long> categoryIds) {
+		ProductRepository productRepository = BeanProvider.getBean(ProductRepository.class);
+    Product savedProduct = productRepository.save(product);
 
-		return product;
+    productRepository.saveProductCategories(savedProduct.getId(), categoryIds);
+
+		return savedProduct;
 	}
 
 	public long deleteProduct(Long id) {
-    var productRepository = BeanProvider.getBean(ProductRepository.class);
+		ProductRepository productRepository = BeanProvider.getBean(ProductRepository.class);
     productRepository.deleteById(id);
 
 		return id;
@@ -32,13 +35,13 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public List<Product> getProductsByUser(long userId) {
-    var productRepository = BeanProvider.getBean(ProductRepository.class);
+		ProductRepository productRepository = BeanProvider.getBean(ProductRepository.class);
     return productRepository.findProductsByUser(userId);
 	}
 
 	public long getUserIdForFetchProduct(long userIdFromRequest) {
-		var authenticatedUser = CurrentUserFetcher.getCurrentUser();
-		var resultUserId = authenticatedUser.getId();
+		User authenticatedUser = CurrentUserFetcher.getCurrentUser();
+		long resultUserId = authenticatedUser.getId();
 
 		if (userIdFromRequest != 0) {
 			resultUserId = userIdFromRequest;

@@ -13,7 +13,7 @@ public class LoginController {
 
   @PostMapping("/login")
   public ResponseEntity<String> login(@RequestBody LoginRequestWrapper reqWrapper) {
-    var authenticationManager = BeanProvider.getBean(AuthenticationManagerInterface.class);
+    AuthenticationManagerInterface authenticationManager = BeanProvider.getBean(AuthenticationManagerInterface.class);
 
     authenticationManager.authenticate(reqWrapper.getUserLogin(), reqWrapper.getUserPassword());
 

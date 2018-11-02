@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class FirstConfigureUser implements FirstConfigureUserInterface {
   @Override
   public void configureUser(User user) {
-    var cryptPassword = CryptPassword.crypt(user.getPassword());
+    String cryptPassword = CryptPassword.crypt(user.getPassword());
 
     user.setPassword(cryptPassword);
 

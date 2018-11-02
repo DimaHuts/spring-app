@@ -6,9 +6,9 @@ import notebook.entity.Product;
 
 public interface ProductService {
 	List<Product> findAll();
-	
-	Product saveProduct(Product product);
-	
+
+	Product saveProduct(Product product, List<Long> categoryIds);
+
 	long deleteProduct(Long id);
 
 	List<Product> getProductsByUser(long userId);

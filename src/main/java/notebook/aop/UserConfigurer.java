@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 public class UserConfigurer {
   @Before("execution(* notebook.controller.RegistrationController.createNewUser(..)) && args(user)")
   public void configureUserAfterRegistration(User user) {
-    var firstConfigureUser = BeanProvider.getBean(FirstConfigureUserInterface.class);
+    FirstConfigureUserInterface firstConfigureUser = BeanProvider.getBean(FirstConfigureUserInterface.class);
 
     firstConfigureUser.configureUser(user);
   }

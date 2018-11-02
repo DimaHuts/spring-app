@@ -14,4 +14,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
   @Query("select p from Product p where p.userId = :userId")
   List<Product> findProductsByUser(@Param("userId") long userId);
+
+  @Query(value = "insert into product_categories(patient_id, category_id) values (:productId, :categoryIds)", nativeQuery = true)
+  void saveProductCategories(@Param("productId") Long productId, @Param("categoryIds") List<Long> categoryIds);
 }

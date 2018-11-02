@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 public class ContextManager implements ContextManagerInterface {
   @Override
   public User getUserFromContext() {
-    var userService = BeanProvider.getBean(UserService.class);
-    var userName = getPrincipal().getUsername();
+    UserService userService = BeanProvider.getBean(UserService.class);
+    String userName = getPrincipal().getUsername();
 
     return userService.findUserByEmail(userName);
   }

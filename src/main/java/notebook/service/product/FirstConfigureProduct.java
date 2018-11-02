@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class FirstConfigureProduct implements FirstConfigureProductInterface {
   @Override
   public void configureProduct(Product product) {
-    var contextManager = BeanProvider.getBean(ContextManagerInterface.class);
+    ContextManagerInterface contextManager = BeanProvider.getBean(ContextManagerInterface.class);
 
     User currentUser = contextManager.getUserFromContext();
 

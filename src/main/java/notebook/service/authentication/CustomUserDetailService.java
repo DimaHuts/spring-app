@@ -15,10 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class CustomUserDetailService implements UserDetailsService {
   @Override
   public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-    var userService = BeanProvider.getBean(UserService.class);
+    UserService userService = BeanProvider.getBean(UserService.class);
     User user = userService.findUserByEmail(email);
 
-    var securityUserInterface = BeanProvider.getBean(SecurityUserInterface.class);
+    SecurityUserInterface securityUserInterface = BeanProvider.getBean(SecurityUserInterface.class);
     return securityUserInterface.getConfiguredSecurityUser(user);
   }
 
