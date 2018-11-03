@@ -3,9 +3,7 @@ package notebook.controller;
 import java.util.List;
 
 import notebook.controller.wrappers.DeleteByIdRequestWrapper;
-import notebook.controller.wrappers.ProductRequestWrapper;
 import notebook.service.common.BeanProvider;
-import notebook.service.common.CurrentUserFetcher;
 import org.springframework.web.bind.annotation.*;
 
 import notebook.entity.Product;
@@ -22,17 +20,17 @@ public class ProductController {
 	}
 
 	@PostMapping("/create")
-	public Product createProduct(@RequestBody ProductRequestWrapper productRequestWrapper) {
+	public Product createProduct(@RequestBody Product product) {
 		ProductService productService = BeanProvider.getBean(ProductService.class);
 
-		return productService.saveProduct(productRequestWrapper.getProduct(), productRequestWrapper.getCategoryIds());
+		return productService.saveProduct(product);
 	}
 
 	@PostMapping("/update")
-	public Product updateProduct(@RequestBody ProductRequestWrapper productRequestWrapper) {
+	public Product updateProduct(@RequestBody Product product) {
 		ProductService productService = BeanProvider.getBean(ProductService.class);
 
-		return productService.saveProduct(productRequestWrapper.getProduct(), productRequestWrapper.getCategoryIds());
+		return productService.saveProduct(product);
 	}
 
 	@PostMapping("/delete")

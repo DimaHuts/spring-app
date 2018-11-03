@@ -1,28 +1,36 @@
 package notebook.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
-@Table(name = "Product")
 @Entity
-public class Product implements Serializable {
+public class Product {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
 	private long id;
 
-	@Column(name = "name")
 	private String name;
 
-	@Column(name = "description")
 	private String description;
 
-	@Column(name = "price")
 	private double price;
 
-	@Column(name = "userId")
-  	private long userId;
+	private long userId;
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "product_categories",
+		joinColumns = { @JoinColumn(name = "productId") },
+		inverseJoinColumns = { @JoinColumn(name = "categoryId") })
+	private Set<ProductCategory> categories = new HashSet<>();
+
+	public Product(String name, String description, double price, Set<ProductCategory> categories) {
+		this.name = name;
+		this.description = description;
+		this.price = price;
+		this.categories = categories;
+	}
 
 	public long getId() {
 		return id;
@@ -63,4 +71,12 @@ public class Product implements Serializable {
   public void setUserId(long userId) {
     this.userId = userId;
   }
+
+	public Set<ProductCategory> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(Set<ProductCategory> categories) {
+		this.categories = categories;
+	}
 }

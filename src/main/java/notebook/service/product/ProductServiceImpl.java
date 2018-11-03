@@ -17,13 +17,10 @@ public class ProductServiceImpl implements ProductService {
 		return productRepository.findAllProducts();
 	}
 
-	public Product saveProduct(Product product, List<Long> categoryIds) {
+	public Product saveProduct(Product product) {
 		ProductRepository productRepository = BeanProvider.getBean(ProductRepository.class);
-    Product savedProduct = productRepository.save(product);
 
-    productRepository.saveProductCategories(savedProduct.getId(), categoryIds);
-
-		return savedProduct;
+		return productRepository.save(product);
 	}
 
 	public long deleteProduct(Long id) {
