@@ -12,39 +12,39 @@ import notebook.repository.ProductRepository;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-	public List<Product> findAll() {
-		ProductRepository productRepository = BeanProvider.getBean(ProductRepository.class);
-		return productRepository.findAllProducts();
-	}
+  public List<Product> findAll() {
+    ProductRepository productRepository = BeanProvider.getBean(ProductRepository.class);
+    return productRepository.findAllProducts();
+  }
 
-	public Product saveProduct(Product product) {
-		ProductRepository productRepository = BeanProvider.getBean(ProductRepository.class);
+  public Product saveProduct(Product product) {
+    ProductRepository productRepository = BeanProvider.getBean(ProductRepository.class);
 
-		return productRepository.save(product);
-	}
+    return productRepository.save(product);
+  }
 
-	public long deleteProduct(Long id) {
-		ProductRepository productRepository = BeanProvider.getBean(ProductRepository.class);
+  public long deleteProduct(Long id) {
+    ProductRepository productRepository = BeanProvider.getBean(ProductRepository.class);
     productRepository.deleteById(id);
 
-		return id;
-	}
+    return id;
+  }
 
-	@Override
-	public List<Product> getProductsByUser(long userId) {
-		ProductRepository productRepository = BeanProvider.getBean(ProductRepository.class);
+  @Override
+  public List<Product> getProductsByUser(long userId) {
+    ProductRepository productRepository = BeanProvider.getBean(ProductRepository.class);
     return productRepository.findProductsByUser(userId);
-	}
+  }
 
-	public long getUserIdForFetchProduct(long userIdFromRequest) {
-		User authenticatedUser = CurrentUserFetcher.getCurrentUser();
-		long resultUserId = authenticatedUser.getId();
+  public long getUserIdForFetchProduct(long userIdFromRequest) {
+    User authenticatedUser = CurrentUserFetcher.getCurrentUser();
+    long resultUserId = authenticatedUser.getId();
 
-		if (userIdFromRequest != 0) {
-			resultUserId = userIdFromRequest;
-		}
+    if (userIdFromRequest != 0) {
+      resultUserId = userIdFromRequest;
+    }
 
-		return resultUserId;
-	}
+    return resultUserId;
+  }
 
 }

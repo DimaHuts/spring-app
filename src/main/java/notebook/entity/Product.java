@@ -1,7 +1,6 @@
 package notebook.entity;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -19,11 +18,16 @@ public class Product {
 
 	private long userId;
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = {
+		CascadeType.REFRESH,
+		CascadeType.REMOVE
+	})
 	@JoinTable(name = "product_categories",
 		joinColumns = { @JoinColumn(name = "productId") },
 		inverseJoinColumns = { @JoinColumn(name = "categoryId") })
-	private Set<ProductCategory> categories = new HashSet<>();
+	private Set<ProductCategory> categories;
+
+	public Product() {}
 
 	public Product(String name, String description, double price, Set<ProductCategory> categories) {
 		this.name = name;
