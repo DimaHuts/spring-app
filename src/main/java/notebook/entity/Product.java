@@ -20,7 +20,6 @@ public class Product {
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = {
 		CascadeType.REFRESH,
-		CascadeType.REMOVE
 	})
 	@JoinTable(name = "product_categories",
 		joinColumns = { @JoinColumn(name = "productId") },
