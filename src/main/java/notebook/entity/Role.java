@@ -1,6 +1,7 @@
 package notebook.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Role {
@@ -9,6 +10,18 @@ public class Role {
   private int id;
 
   private String name;
+
+  @ManyToMany(
+          fetch = FetchType.LAZY,
+          cascade = {
+                  CascadeType.REFRESH,
+          })
+  @JoinTable(
+          name = "roles_permissions",
+          joinColumns = { @JoinColumn(name = "roleId") },
+          inverseJoinColumns = { @JoinColumn(name = "permissionId") }
+  )
+  private Set<Permission> permissions;
 
   public int getId() {
     return id;
@@ -24,5 +37,13 @@ public class Role {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public Set<Permission> getPermissions() {
+      return permissions;
+  }
+
+  public void setPermissions(Set<Permission> permissions) {
+      this.permissions = permissions;
   }
 }
