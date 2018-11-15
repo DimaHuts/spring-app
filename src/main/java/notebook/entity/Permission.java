@@ -9,15 +9,19 @@ import javax.persistence.Id;
 public class Permission {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private int id;
+  private long id;
 
   private String name;
 
-  public int getId() {
+  public Permission(String name) {
+    this.name = name;
+  }
+
+  public long getId() {
       return id;
   }
 
-  public void setId(int id) {
+  public void setId(long id) {
       this.id = id;
   }
 
