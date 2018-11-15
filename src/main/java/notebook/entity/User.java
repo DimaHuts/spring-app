@@ -2,6 +2,7 @@ package notebook.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name="users")
@@ -18,6 +19,18 @@ public class User implements Serializable {
   private String firstName;
 
   private String lastName;
+
+  @ManyToMany(
+          fetch = FetchType.LAZY,
+          cascade = {
+            CascadeType.REFRESH,
+          })
+  @JoinTable(
+          name = "users_roles",
+          joinColumns = { @JoinColumn(name = "userId") },
+          inverseJoinColumns = { @JoinColumn(name = "roleId") }
+  )
+  private Set<Role> roles;
 
   public long getId() {
     return id;
@@ -57,5 +70,13 @@ public class User implements Serializable {
 
   public void setFirstName(String firstName) {
     this.firstName = firstName;
+  }
+
+  public Set<Role> getRoles() {
+    return roles;
+  }
+
+  public void setRoles(Set<Role> roles) {
+    this.roles = roles;
   }
 }
