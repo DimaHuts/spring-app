@@ -19,31 +19,14 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
       return;
     }
 
-    Permission readPermission
-      = createPermissionIfNotFound("VIEW_PRODUCTS");
-    Permission writePermission
-      = createPermissionIfNotFound("CREATE_EDIT_PRODUCTS");
-
-//    List<Permission> adminPermissions = Arrays.asList(
-//      readPermission, writePermission);
-//    createRoleIfNotFound("ROLE_ADMIN", adminPermissions);
-//    createRoleIfNotFound("ROLE_USER", Arrays.asList(readPermission));
-//
-//    Role adminRole = roleRepository.findByName("ROLE_ADMIN");
-//    User user = new User();
-//    user.setFirstName("Test");
-//    user.setLastName("Test");
-//    user.setPassword(passwordEncoder.encode("test"));
-//    user.setEmail("test@test.com");
-//    user.setRoles(Arrays.asList(adminRole));
-//    user.setEnabled(true);
-//    userRepository.save(user);
+    createPermissionIfNotFound("VIEW_PRODUCTS");
+    createPermissionIfNotFound("CREATE_EDIT_PRODUCTS");
 
     alreadySetup = true;
   }
 
   @Transactional
-  Permission createPermissionIfNotFound(String name) {
+  void createPermissionIfNotFound(String name) {
     PermissionService permissionService = BeanProvider.getBean(PermissionService.class);
 
     Permission permission = permissionService.findPermissionByName(name);
@@ -52,6 +35,5 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
       permission = new Permission(name);
       permissionService.save(permission);
     }
-    return permission;
   }
 }
