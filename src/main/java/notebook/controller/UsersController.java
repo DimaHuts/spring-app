@@ -34,4 +34,11 @@ public class UsersController {
 
     return Converter.convert(authenticatedUser, UserDto.class);
   }
+
+  @PostMapping("/userUpdate")
+  public void updateUser(@RequestBody User user) {
+    UserService userService = BeanProvider.getBean(UserService.class);
+
+    userService.saveUser(user);
+  }
 }

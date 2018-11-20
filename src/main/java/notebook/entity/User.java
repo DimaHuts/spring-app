@@ -6,7 +6,7 @@ import java.util.Set;
 
 @Entity
 @Table(name="users")
-public class User implements Serializable {
+public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
@@ -20,17 +20,19 @@ public class User implements Serializable {
 
   private String lastName;
 
+  private byte roleId;
+
   @ManyToMany(
-          fetch = FetchType.LAZY,
-          cascade = {
-            CascadeType.REFRESH,
-          })
+    fetch = FetchType.LAZY,
+    cascade = {
+      CascadeType.REFRESH,
+    })
   @JoinTable(
-          name = "users_roles",
-          joinColumns = { @JoinColumn(name = "userId") },
-          inverseJoinColumns = { @JoinColumn(name = "roleId") }
+    name = "users_permissions",
+    joinColumns = { @JoinColumn(name = "userId") },
+    inverseJoinColumns = { @JoinColumn(name = "permissionId") }
   )
-  private Set<Role> roles;
+  private Set<Permission> permissions;
 
   public long getId() {
     return id;
@@ -72,11 +74,19 @@ public class User implements Serializable {
     this.firstName = firstName;
   }
 
-  public Set<Role> getRoles() {
-    return roles;
+  public byte getRoleId() {
+    return roleId;
   }
 
-  public void setRoles(Set<Role> roles) {
-    this.roles = roles;
+  public void setRoleId(byte roleId) {
+    this.roleId = roleId;
+  }
+
+  public Set<Permission> getPermissions() {
+    return permissions;
+  }
+
+  public void setPermissions(Set<Permission> permissions) {
+    this.permissions = permissions;
   }
 }
