@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/api/users")
 public class UsersController {
   @PostMapping("/exist/email")
-  public Integer checkExistUser(@RequestBody ExistUserWrapper user) {
+  public long checkExistUser(@RequestBody ExistUserWrapper user) {
     UserService userService = BeanProvider.getBean(UserService.class);
 
     return userService.findUserIdByEmail(user.getEmail());

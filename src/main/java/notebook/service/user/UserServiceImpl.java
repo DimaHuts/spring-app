@@ -31,9 +31,15 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public Integer findUserIdByEmail(String email) {
+  public long findUserIdByEmail(String email) {
     UserRepository userRepository = BeanProvider.getBean(UserRepository.class);
 
-    return userRepository.findUserIdByEmail(email);
+    User userFromBd = userRepository.findByEmail(email);
+
+    if (userFromBd != null) {
+      return userFromBd.getId();
+    }
+
+    return 0;
   }
 }
