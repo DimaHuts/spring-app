@@ -9,7 +9,9 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface UserRepository extends JpaRepository<User, Long> {
-  User findByEmail(String email);
+  @Query("select u from User u where u.email = :email")
+  @EntityGraph(attributePaths = {"permissions"})
+  User findByEmail(@Param("email") String email);
 
   @Query("select u from User u")
   @EntityGraph(attributePaths = {"permissions"})
