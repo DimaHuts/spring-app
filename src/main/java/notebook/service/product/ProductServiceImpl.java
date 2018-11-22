@@ -5,6 +5,7 @@ import java.util.List;
 import notebook.entity.User;
 import notebook.service.common.BeanProvider;
 import notebook.service.common.CurrentUserFetcher;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import notebook.entity.Product;

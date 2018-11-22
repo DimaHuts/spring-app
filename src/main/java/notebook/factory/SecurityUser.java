@@ -11,19 +11,20 @@ import java.util.Collection;
 
 @Service
 public class SecurityUser implements SecurityUserInterface {
-    @Override
-    public UserDetails getConfiguredSecurityUser(User user) {
-        return new org.springframework.security.core.userdetails.User(
-                user.getEmail(), user.getPassword(), getSecurityUserAuthority(user));
-    }
+  @Override
+  public UserDetails getConfiguredSecurityUser(User user) {
+    return new org.springframework.security.core.userdetails.User(
+            user.getEmail(), user.getPassword(), getSecurityUserAuthority(user));
+  }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getSecurityUserAuthority(User user) {
-        Collection<GrantedAuthority> authorities = new ArrayList<>();
+  @Override
+  public Collection<? extends GrantedAuthority> getSecurityUserAuthority(User user) {
+    ArrayList<GrantedAuthority> authorities = new ArrayList<>();
 
-        authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+    user.getPermissions().stream()
+      .map(permission -> new SimpleGrantedAuthority(permission.getName()))
+      .forEach(authorities::add);
 
-        return authorities;
-    }
+    return authorities;
+  }
 }

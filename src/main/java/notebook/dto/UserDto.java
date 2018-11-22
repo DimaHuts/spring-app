@@ -1,5 +1,9 @@
 package notebook.dto;
 
+import notebook.entity.Permission;
+
+import java.util.Set;
+
 public class UserDto {
   private long id;
 
@@ -9,7 +13,9 @@ public class UserDto {
 
   private String lastName;
 
-  private byte[] roles;
+  private byte roleId;
+
+  private Set<Permission> permissions;
 
   public long getId() {
     return id;
@@ -43,11 +49,19 @@ public class UserDto {
     this.lastName = lastName;
   }
 
-  public byte[] getRoles() {
-    return roles;
+  public byte getRoleId() {
+    return roleId;
   }
 
-  public void setRoles(byte[] roles) {
-    this.roles = roles;
+  public void setRoleId(byte roleId) {
+    this.roleId = roleId;
+  }
+
+  public Set<Permission> getPermissions() {
+    return permissions;
+  }
+
+  public void setPermissions(Set<Permission> permissions) {
+    this.permissions = permissions;
   }
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import notebook.controller.wrappers.DeleteByIdRequestWrapper;
 import notebook.service.common.BeanProvider;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import notebook.entity.Product;
@@ -12,6 +13,7 @@ import notebook.service.product.ProductService;
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {
+	@PreAuthorize("hasAuthority('Permissions.VIEW_ALL_PRODUCTS.getPermission()')")
 	@GetMapping("/get")
 	public List<Product> getAllProducts() {
 		ProductService productService = BeanProvider.getBean(ProductService.class);

@@ -1,6 +1,7 @@
 package notebook.init;
 
 import notebook.entity.Permission;
+import notebook.enums.Permissions;
 import notebook.service.common.BeanProvider;
 import notebook.service.permission.PermissionService;
 import org.springframework.context.ApplicationListener;
@@ -19,8 +20,8 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
       return;
     }
 
-    createPermissionIfNotFound("VIEW_PRODUCTS");
-    createPermissionIfNotFound("CREATE_EDIT_PRODUCTS");
+    createPermissionIfNotFound(Permissions.VIEW_ALL_PRODUCTS.getPermission());
+    createPermissionIfNotFound(Permissions.CREATE_EDIT_VIEW_PRODUCTS.getPermission());
 
     alreadySetup = true;
   }
