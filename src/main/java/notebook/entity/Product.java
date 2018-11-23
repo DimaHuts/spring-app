@@ -16,7 +16,15 @@ public class Product {
 
 	private double price;
 
-	private long userId;
+	@ManyToOne(
+		fetch = FetchType.LAZY,
+		optional = false
+	)
+	@JoinColumn(
+		name = "userId",
+		nullable = false
+	)
+	private User user;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = {
 		CascadeType.REFRESH,
@@ -67,19 +75,19 @@ public class Product {
 		this.price = price;
 	}
 
-  public long getUserId() {
-    return userId;
-  }
-
-  public void setUserId(long userId) {
-    this.userId = userId;
-  }
-
 	public Set<ProductCategory> getCategories() {
 		return categories;
 	}
 
 	public void setCategories(Set<ProductCategory> categories) {
 		this.categories = categories;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 }

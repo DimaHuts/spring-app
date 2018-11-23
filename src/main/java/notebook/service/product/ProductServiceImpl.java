@@ -34,6 +34,7 @@ public class ProductServiceImpl implements ProductService {
   @Override
   public List<Product> getProductsByUser(long userId) {
     ProductRepository productRepository = BeanProvider.getBean(ProductRepository.class);
+
     return productRepository.findProductsByUser(userId);
   }
 
