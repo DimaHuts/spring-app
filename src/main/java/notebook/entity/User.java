@@ -1,7 +1,6 @@
 package notebook.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Set;
 
 @Entity
@@ -20,7 +19,9 @@ public class User {
 
   private String lastName;
 
-  private byte roleId;
+  @OneToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "userRole")
+  private Role role;
 
   @ManyToMany(
     fetch = FetchType.LAZY,
@@ -74,19 +75,19 @@ public class User {
     this.firstName = firstName;
   }
 
-  public byte getRoleId() {
-    return roleId;
-  }
-
-  public void setRoleId(byte roleId) {
-    this.roleId = roleId;
-  }
-
   public Set<Permission> getPermissions() {
     return permissions;
   }
 
   public void setPermissions(Set<Permission> permissions) {
     this.permissions = permissions;
+  }
+
+  public Role getRole() {
+    return role;
+  }
+
+  public void setRole(Role role) {
+    this.role = role;
   }
 }
