@@ -23,6 +23,11 @@ public class Role {
   )
   private Set<Permission> permissions;
 
+  public Role(String name, Set<Permission> permissions) {
+    this.name = name;
+    this.permissions = permissions;
+  }
+
   public int getId() {
     return id;
   }
