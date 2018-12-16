@@ -19,17 +19,9 @@ import java.util.Set;
 
 @Component
 public class RolesAndPermissionsInitialDataLoader implements ApplicationListener<ContextRefreshedEvent> {
-//  private boolean alreadySetup = false;
-
   @Override
   public void onApplicationEvent(ContextRefreshedEvent event) {
-//    if (alreadySetup) {
-//      return;
-//    }
-
     uploadInitialData();
-
-//    alreadySetup = true;
   }
 
   private void uploadInitialData() {

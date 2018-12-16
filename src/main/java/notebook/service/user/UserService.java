@@ -12,4 +12,8 @@ public interface UserService {
   List<User> findAll();
 
   long findUserIdByEmail(String email);
+
+  void cryptUserPassword(User user);
+
+  void setRoleForUser(User user);
 }
