@@ -33,7 +33,7 @@ public class RoleServiceImpl implements RoleService {
     Set<Role> allRoles = roleRepository.findAllRoles();
 
     Role existedUserRole = null;
-    CompareTwoSetsPermissions twoSetsPermissionsComparator = new CompareTwoSetsPermissionsImpl();
+    CompareTwoSetsPermissions twoSetsPermissionsComparator = BeanProvider.getBean(CompareTwoSetsPermissions.class);
 
     for (Role role : allRoles) {
       if (twoSetsPermissionsComparator.compare(role.getPermissions(), permissions)) {
