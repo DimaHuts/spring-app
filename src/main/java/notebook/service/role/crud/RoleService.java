@@ -1,4 +1,4 @@
-package notebook.service.role;
+package notebook.service.role.crud;
 
 import notebook.entity.Role;
 

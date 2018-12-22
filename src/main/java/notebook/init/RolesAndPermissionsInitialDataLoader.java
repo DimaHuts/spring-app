@@ -6,7 +6,7 @@ import notebook.enums.Permissions;
 import notebook.enums.Roles;
 import notebook.service.common.BeanProvider;
 import notebook.service.permission.PermissionService;
-import notebook.service.role.RoleService;
+import notebook.service.role.crud.RoleService;
 import notebook.service.role.findRoleByName.FindRoleByNameService;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;

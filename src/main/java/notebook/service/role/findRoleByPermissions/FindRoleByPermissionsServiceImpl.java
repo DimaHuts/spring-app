@@ -3,7 +3,7 @@ package notebook.service.role.findRoleByPermissions;
 import notebook.entity.Permission;
 import notebook.entity.Role;
 import notebook.service.common.BeanProvider;
-import notebook.service.role.CompareTwoSetsPermissions;
+import notebook.service.role.compareTwoSetsPermissions.CompareTwoSetsPermissionsService;
 import notebook.service.role.findAllRoles.FindAllRolesService;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +18,7 @@ public class FindRoleByPermissionsServiceImpl implements FindRoleByPermissionsSe
       Set<Role> allRoles = findAllRolesService.findAllRoles();
 
       Role existedUserRole = null;
-      CompareTwoSetsPermissions twoSetsPermissionsComparator = BeanProvider.getBean(CompareTwoSetsPermissions.class);
+      CompareTwoSetsPermissionsService twoSetsPermissionsComparator = BeanProvider.getBean(CompareTwoSetsPermissionsService.class);
 
       for (Role role : allRoles) {
         if (twoSetsPermissionsComparator.compare(role.getPermissions(), permissions)) {

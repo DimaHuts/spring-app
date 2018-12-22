@@ -1,7 +1,6 @@
-package notebook.service.role.impl;
+package notebook.service.role.compareTwoSetsPermissions;
 
 import notebook.entity.Permission;
-import notebook.service.role.CompareTwoSetsPermissions;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,7 +8,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-public class CompareTwoSetsPermissionsImpl implements CompareTwoSetsPermissions {
+public class CompareTwoSetsPermissionsServiceImpl implements CompareTwoSetsPermissionsService {
   @Override
   public boolean compare(Set<Permission> firstSet, Set<Permission> secondSet) {
     if (isNullOneOfSetsPermissions(firstSet, secondSet)) {

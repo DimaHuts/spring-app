@@ -1,9 +1,9 @@
-package notebook.service.role;
+package notebook.service.role.compareTwoSetsPermissions;
 
 import notebook.entity.Permission;
 
 import java.util.Set;
 
-public interface CompareTwoSetsPermissions {
+public interface CompareTwoSetsPermissionsService {
   boolean compare(Set<Permission> firstSet, Set<Permission> secondSet);
 }
