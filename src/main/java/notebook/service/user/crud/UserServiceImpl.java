@@ -1,9 +1,8 @@
-package notebook.service.user.impl;
+package notebook.service.user.crud;
 
 import notebook.entity.User;
 import notebook.repository.user.UserRepository;
 import notebook.service.common.BeanProvider;
-import notebook.service.user.UserService;
 import org.springframework.stereotype.Service;
 
 @Service

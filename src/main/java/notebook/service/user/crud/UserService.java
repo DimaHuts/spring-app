@@ -1,4 +1,4 @@
-package notebook.service.user;
+package notebook.service.user.crud;
 
 import notebook.entity.User;
 

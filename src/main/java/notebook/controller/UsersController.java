@@ -6,7 +6,7 @@ import notebook.entity.User;
 import notebook.service.common.BeanProvider;
 import notebook.service.common.CurrentUserFetcher;
 import notebook.service.common.dto.Converter;
-import notebook.service.user.UserService;
+import notebook.service.user.crud.UserService;
 import notebook.service.user.findAllUsers.FindAllUsersService;
 import notebook.service.user.findUserByEmail.FindUserByEmailService;
 import org.springframework.web.bind.annotation.*;
