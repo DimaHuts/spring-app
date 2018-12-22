@@ -13,7 +13,7 @@ import notebook.service.product.ProductService;
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {
-	@PreAuthorize("hasAuthority('Permissions.VIEW_ALL_PRODUCTS.getPermission()')")
+	@PreAuthorize("hasAuthority('VIEW_ALL_PRODUCTS')")
 	@GetMapping("/get")
 	public List<Product> getAllProducts() {
 		ProductService productService = BeanProvider.getBean(ProductService.class);
@@ -21,7 +21,7 @@ public class ProductController {
 		return productService.findAll();
 	}
 
-	@PostMapping("/create")
+	@PostMapping("/create/")
 	public Product createProduct(@RequestBody Product product) {
 		ProductService productService = BeanProvider.getBean(ProductService.class);
 

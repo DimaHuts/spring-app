@@ -7,6 +7,8 @@ import notebook.service.common.BeanProvider;
 import notebook.service.common.CurrentUserFetcher;
 import notebook.service.common.dto.Converter;
 import notebook.service.user.UserService;
+import notebook.service.user.findAllUsers.FindAllUsersService;
+import notebook.service.user.findUserByEmail.FindUserByEmailService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,16 +18,16 @@ import java.util.List;
 public class UsersController {
   @PostMapping("/exist/email")
   public long checkExistUser(@RequestBody ExistUserWrapper user) {
-    UserService userService = BeanProvider.getBean(UserService.class);
+    FindUserByEmailService findUserByEmailService = BeanProvider.getBean(FindUserByEmailService.class);
 
-    return userService.findUserIdByEmail(user.getEmail());
+    return findUserByEmailService.findUserByEmail(user.getEmail()).getId();
   }
 
   @GetMapping("/getAll")
   public List<User> getAllUsers() {
-    UserService userService = BeanProvider.getBean(UserService.class);
+    FindAllUsersService findAllUsersService = BeanProvider.getBean(FindAllUsersService.class);
 
-    return userService.findAll();
+    return findAllUsersService.findAll();
   }
 
   @GetMapping("/get/current")

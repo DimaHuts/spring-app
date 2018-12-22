@@ -7,6 +7,7 @@ import notebook.enums.Roles;
 import notebook.service.common.BeanProvider;
 import notebook.service.permission.PermissionService;
 import notebook.service.role.RoleService;
+import notebook.service.role.findRoleByName.FindRoleByNameService;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -54,11 +55,12 @@ public class RolesAndPermissionsInitialDataLoader implements ApplicationListener
 
   @Transactional
   void createRoleIfNotFound(Role role) {
-    RoleService roleService = BeanProvider.getBean(RoleService.class);
-
-    Role roleFromDb = roleService.findRoleByName(role.getName());
+    FindRoleByNameService findRoleByNameService = BeanProvider.getBean(FindRoleByNameService.class);
+    Role roleFromDb = findRoleByNameService.findRoleByName(role.getName());
 
     if (roleFromDb == null) {
+      RoleService roleService = BeanProvider.getBean(RoleService.class);
+
       roleService.saveRole(role);
     }
   }

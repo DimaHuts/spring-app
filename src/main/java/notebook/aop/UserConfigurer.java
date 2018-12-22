@@ -1,9 +1,10 @@
 package notebook.aop;
 
 import notebook.entity.User;
-import notebook.repository.UserRepository;
 import notebook.service.common.BeanProvider;
 import notebook.service.user.FirstConfigureUserInterface;
+import notebook.service.user.getUserById.GetUserByIdService;
+import notebook.service.user.updateUserRole.UpdateUserRoleService;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
@@ -20,12 +21,15 @@ public class UserConfigurer {
 
   @Before("execution(* notebook.controller.UsersController.updateUser(..)) && args(user)")
   public void beforeUserUpdate(User user) {
-    UserRepository userRepository = BeanProvider.getBean(UserRepository.class);
+    GetUserByIdService getUserByIdService = BeanProvider.getBean(GetUserByIdService.class);
 
-    User userFromDb = userRepository.getUserById(user.getId());
+    User userFromDb = getUserByIdService.getUserById(user.getId());
 
     if (userFromDb != null) {
       user.setPassword(userFromDb.getPassword());
     }
+
+    UpdateUserRoleService updateUserRoleService = BeanProvider.getBean(UpdateUserRoleService.class);
+    updateUserRoleService.updateUserRole(user);
   }
 }
