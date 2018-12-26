@@ -1,7 +1,6 @@
 package notebook.repository.permission;
 
 import notebook.entity.Permission;
-import notebook.repository.PermissionRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 

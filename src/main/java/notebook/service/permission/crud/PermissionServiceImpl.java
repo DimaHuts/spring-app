@@ -1,7 +1,7 @@
 package notebook.service.permission.crud;
 
 import notebook.entity.Permission;
-import notebook.repository.PermissionRepository;
+import notebook.repository.permission.PermissionRepository;
 import notebook.service.common.BeanProvider;
 import org.springframework.stereotype.Service;
 

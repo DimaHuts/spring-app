@@ -1,4 +1,4 @@
-package notebook.service.product_category;
+package notebook.service.productСategory.crud;
 
 import notebook.entity.ProductCategory;
 

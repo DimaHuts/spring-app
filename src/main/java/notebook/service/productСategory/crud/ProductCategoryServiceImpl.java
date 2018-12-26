@@ -1,9 +1,8 @@
-package notebook.service.product_category.Impl;
+package notebook.service.productСategory.crud;
 
 import notebook.entity.ProductCategory;
-import notebook.repository.ProductCategoryRepository;
+import notebook.repository.productCategory.ProductCategoryRepository;
 import notebook.service.common.BeanProvider;
-import notebook.service.product_category.ProductCategoryService;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -1,4 +1,4 @@
-package notebook.repository;
+package notebook.repository.permission;
 
 import notebook.entity.Permission;
 import org.springframework.data.jpa.repository.JpaRepository;

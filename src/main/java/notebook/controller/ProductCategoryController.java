@@ -2,7 +2,7 @@ package notebook.controller;
 
 import notebook.entity.ProductCategory;
 import notebook.service.common.BeanProvider;
-import notebook.service.product_category.ProductCategoryService;
+import notebook.service.productСategory.crud.ProductCategoryService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
