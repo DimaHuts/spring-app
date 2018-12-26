@@ -5,7 +5,8 @@ import notebook.entity.Role;
 import notebook.enums.Permissions;
 import notebook.enums.Roles;
 import notebook.service.common.BeanProvider;
-import notebook.service.permission.PermissionService;
+import notebook.service.permission.crud.PermissionService;
+import notebook.service.permission.findPermissionByName.FindPermissionByNameService;
 import notebook.service.role.crud.RoleService;
 import notebook.service.role.findRoleByName.FindRoleByNameService;
 import org.springframework.context.ApplicationListener;
@@ -41,12 +42,13 @@ public class RolesAndPermissionsInitialDataLoader implements ApplicationListener
 
   @Transactional
   Permission createPermissionIfNotFound(String name) {
-    PermissionService permissionService = BeanProvider.getBean(PermissionService.class);
-
-    Permission permission = permissionService.findPermissionByName(name);
+    FindPermissionByNameService findPermissionByNameService = BeanProvider.getBean(FindPermissionByNameService.class);
+    Permission permission = findPermissionByNameService.findPermissionByName(name);
 
     if (permission == null) {
       permission = new Permission(name);
+
+      PermissionService permissionService = BeanProvider.getBean(PermissionService.class);
       permissionService.save(permission);
     }
 

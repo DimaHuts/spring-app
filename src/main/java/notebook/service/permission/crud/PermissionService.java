@@ -1,9 +1,7 @@
-package notebook.service.permission;
+package notebook.service.permission.crud;
 
 import notebook.entity.Permission;
 
 public interface PermissionService {
-  Permission findPermissionByName(String name);
-
   Permission save(Permission permission);
 }
