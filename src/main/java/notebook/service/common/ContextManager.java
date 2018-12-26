@@ -1,7 +1,7 @@
 package notebook.service.common;
 
 import notebook.entity.User;
-import notebook.service.user.findUserByEmail.FindUserByEmailService;
+import notebook.service.user.finduserbyemail.FindUserByEmailService;
 import org.springframework.stereotype.Service;
 
 @Service

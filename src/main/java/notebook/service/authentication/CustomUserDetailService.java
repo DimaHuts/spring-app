@@ -3,7 +3,7 @@ package notebook.service.authentication;
 import notebook.entity.User;
 import notebook.factory.SecurityUserInterface;
 import notebook.service.common.BeanProvider;
-import notebook.service.user.findUserByEmail.FindUserByEmailService;
+import notebook.service.user.finduserbyemail.FindUserByEmailService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

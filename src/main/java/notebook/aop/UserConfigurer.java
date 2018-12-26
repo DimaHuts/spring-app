@@ -2,9 +2,9 @@ package notebook.aop;
 
 import notebook.entity.User;
 import notebook.service.common.BeanProvider;
-import notebook.service.user.firstConfigureUser.FirstConfigureUserService;
-import notebook.service.user.getUserById.GetUserByIdService;
-import notebook.service.user.updateUserRole.UpdateUserRoleService;
+import notebook.service.user.firstconfigureuser.FirstConfigureUserService;
+import notebook.service.user.getuserbyid.GetUserByIdService;
+import notebook.service.user.updateuserrole.UpdateUserRoleService;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
