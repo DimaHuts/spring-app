@@ -1,7 +1,7 @@
 package notebook.service.role.crud;
 
 import notebook.entity.Role;
-import notebook.repository.role.RoleRepository;
+import notebook.repository.role.CrudRoleRepository;
 import notebook.service.common.BeanProvider;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class RoleServiceImpl implements RoleService {
   @Override
   public void saveRole(Role role) {
-    RoleRepository roleRepository = BeanProvider.getBean(RoleRepository.class);
+    CrudRoleRepository roleRepository = BeanProvider.getBean(CrudRoleRepository.class);
 
     roleRepository.save(role);
   }
