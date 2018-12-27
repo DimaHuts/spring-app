@@ -1,7 +1,7 @@
 package notebook.service.user.crud;
 
 import notebook.entity.User;
-import notebook.repository.user.UserRepository;
+import notebook.repository.user.CrudUserRepository;
 import notebook.service.common.BeanProvider;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
   @Override
   public void saveUser(User user) {
-    UserRepository userRepository = BeanProvider.getBean(UserRepository.class);
+  	CrudUserRepository userRepository = BeanProvider.getBean(CrudUserRepository.class);
 
     userRepository.save(user);
   }

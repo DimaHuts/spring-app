@@ -4,11 +4,13 @@ import java.util.List;
 
 import notebook.controller.wrappers.DeleteByIdRequestWrapper;
 import notebook.service.common.BeanProvider;
+import notebook.service.product.findallproducts.FindAllProductsService;
+import notebook.service.product.findproductsbuser.FindProductsByUserService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import notebook.entity.Product;
-import notebook.service.product.ProductService;
+import notebook.service.product.crud.ProductService;
 
 @RestController
 @RequestMapping("/api/products")
@@ -16,9 +18,9 @@ public class ProductController {
 	@PreAuthorize("hasAuthority('VIEW_ALL_PRODUCTS')")
 	@GetMapping("/get")
 	public List<Product> getAllProducts() {
-		ProductService productService = BeanProvider.getBean(ProductService.class);
+		FindAllProductsService findAllProductsService = BeanProvider.getBean(FindAllProductsService.class);
 
-		return productService.findAll();
+		return findAllProductsService.findAll();
 	}
 
 	@PostMapping("/create/")
@@ -44,10 +46,8 @@ public class ProductController {
 
 	@GetMapping("/get/byUser/{userId}")
 	public List<Product> getProductsByUser(@PathVariable("userId") long userId) {
-		ProductService productService = BeanProvider.getBean(ProductService.class);
+		FindProductsByUserService findProductsByUserService = BeanProvider.getBean(FindProductsByUserService.class);
 
-    long resultUserId = productService.getUserIdForFetchProduct(userId);
-
-	  return productService.getProductsByUser(resultUserId);
+	  return findProductsByUserService.getProductsByUser(userId);
   }
 }

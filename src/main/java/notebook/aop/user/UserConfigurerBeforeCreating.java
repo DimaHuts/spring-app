@@ -1,15 +1,18 @@
-package notebook.service.user.firstconfigureuser;
+package notebook.aop.user;
 
 import notebook.entity.User;
 import notebook.service.common.BeanProvider;
 import notebook.service.user.cryptuserpassword.CryptUserPasswordService;
 import notebook.service.user.updateuserrole.UpdateUserRoleService;
-import org.springframework.stereotype.Service;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.springframework.stereotype.Component;
 
-@Service
-public class FirstConfigureUserServiceImpl implements FirstConfigureUserService {
-  @Override
-  public void configureUser(User user) {
+@Aspect
+@Component
+public class UserConfigurerBeforeCreating {
+  @Before("execution(* notebook.controller.RegistrationController.createNewUser(..)) && args(user)")
+  public void configureUserAfterRegistration(User user) {
     CryptUserPasswordService cryptUserPasswordService = BeanProvider.getBean(CryptUserPasswordService.class);
     cryptUserPasswordService.cryptUserPassword(user);
 
