@@ -5,6 +5,7 @@ import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
 import notebook.entity.User;
+import notebook.service.authentication.updatesecuritycontext.SecurityContextService;
 import notebook.service.common.BeanProvider;
 import notebook.service.user.updateuserpassword.UpdateUserPasswordService;
 import notebook.service.user.updateuserrole.UpdateUserRoleService;
@@ -19,5 +20,7 @@ public class UserConfigurerAfterUpdating {
   	
     UpdateUserRoleService updateUserRoleService = BeanProvider.getBean(UpdateUserRoleService.class);
     updateUserRoleService.updateUserRole(user);
+    
+    SecurityContextService.updateAuthorities(user);
   }
 }
