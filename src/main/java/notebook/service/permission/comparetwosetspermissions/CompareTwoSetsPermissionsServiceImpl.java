@@ -1,4 +1,4 @@
-package notebook.service.role.comparetwosetspermissions;
+package notebook.service.permission.comparetwosetspermissions;
 
 import notebook.entity.Permission;
 import org.springframework.stereotype.Service;

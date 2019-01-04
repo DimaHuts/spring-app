@@ -3,7 +3,7 @@ package notebook.service.role.findrolebypermissions;
 import notebook.entity.Permission;
 import notebook.entity.Role;
 import notebook.service.common.BeanProvider;
-import notebook.service.role.comparetwosetspermissions.CompareTwoSetsPermissionsService;
+import notebook.service.permission.comparetwosetspermissions.CompareTwoSetsPermissionsService;
 import notebook.service.role.findallroles.FindAllRolesService;
 import org.springframework.stereotype.Service;
 
