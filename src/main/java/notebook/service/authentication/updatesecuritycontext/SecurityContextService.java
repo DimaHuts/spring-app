@@ -12,13 +12,10 @@ import notebook.service.authentication.getsecurityuserauthorirties.SecurityUserA
 
 public interface SecurityContextService {
 	static void updateAuthorities(User userForUpdate) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		
 		Collection<? extends GrantedAuthority> updatedAuthorities = SecurityUserAuthorities.getSecurityUserAuthorities(userForUpdate);
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Authentication newAuth = new UsernamePasswordAuthenticationToken(auth.getPrincipal(), null, updatedAuthorities);
 
-		SecurityContextHolder
-			.getContext()
-			.setAuthentication(newAuth);
+		SecurityContextHolder.getContext().setAuthentication(newAuth);
 	}
 }
