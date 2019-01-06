@@ -1,4 +1,4 @@
-package notebook.service.permission.comparetwosetspermissions;
+package notebook.service.role.comparetwosetspermissions;
 
 import notebook.entity.Permission;
 
