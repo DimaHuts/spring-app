@@ -2,6 +2,7 @@ package notebook.service.authentication;
 
 import notebook.factory.AuthenticationFactory;
 import notebook.service.common.BeanProvider;
+import notebook.service.common.SecurityContextHandler;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,8 +17,6 @@ public class CustomAuthenticationManager implements AuthenticationManagerInterfa
 
     Authentication objectAuthentication = authenticationManager.authenticate(userAuthenticationObject);
 
-    SecurityContextHolder
-      .getContext()
-      .setAuthentication(objectAuthentication);
+    SecurityContextHandler.setAuthentication(objectAuthentication);
   }
 }

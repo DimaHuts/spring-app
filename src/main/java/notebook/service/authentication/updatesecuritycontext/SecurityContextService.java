@@ -2,6 +2,7 @@ package notebook.service.authentication.updatesecuritycontext;
 
 import java.util.Collection;
 
+import notebook.service.common.SecurityContextHandler;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,6 +17,6 @@ public interface SecurityContextService {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Authentication newAuth = new UsernamePasswordAuthenticationToken(auth.getPrincipal(), null, updatedAuthorities);
 
-		SecurityContextHolder.getContext().setAuthentication(newAuth);
+		SecurityContextHandler.setAuthentication(newAuth);
 	}
 }
