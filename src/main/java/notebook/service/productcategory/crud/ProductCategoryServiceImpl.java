@@ -13,6 +13,6 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
     ProductCategory savedProductCategory = productCategoryRepository.save(productCategory);
 
-    return savedProductCategory.getCategoryId();
+    return savedProductCategory.getId();
   }
 }

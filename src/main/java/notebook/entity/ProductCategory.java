@@ -6,33 +6,33 @@ import javax.persistence.*;
 public class ProductCategory {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private long categoryId;
+  private long id;
 
-  private String categoryName;
+  private String name;
 
   public ProductCategory() {}
 
-  public ProductCategory(long categoryId) {
-    this.categoryId = categoryId;
+  public ProductCategory(long id) {
+    this.id = id;
   }
 
-  public ProductCategory(String categoryName) {
-    this.categoryName = categoryName;
+  public ProductCategory(String name) {
+    this.name = name;
   }
 
-  public long getCategoryId() {
-    return categoryId;
+  public long getId() {
+    return id;
   }
 
-  public void setCategoryId(long categoryId) {
-    this.categoryId = categoryId;
+  public void setId(long id) {
+    this.id = id;
   }
 
-  public String getCategoryName() {
-    return categoryName;
+  public String getName() {
+    return name;
   }
 
-  public void setCategoryName(String categoryName) {
-    this.categoryName = categoryName;
+  public void setName(String name) {
+    this.name = name;
   }
 }

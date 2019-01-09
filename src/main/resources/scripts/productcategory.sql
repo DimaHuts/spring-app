@@ -1,0 +1,1 @@
+ALTER TABLE product_category RENAME COLUMN category_name TO name;
