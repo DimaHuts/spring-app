@@ -9,8 +9,9 @@ import org.springframework.stereotype.Service;
 public class CustomAuthenticationManager implements AuthenticationManagerInterface {
   @Override
   public void authenticate(String username, String password) {
-    Authentication userAuthenticationObject = AuthenticationFactory.getAuthenticationObject(username, password);
+    AuthenticationFactory authenticationFactory = new AuthenticationFactory();
+    Authentication authentication = authenticationFactory.getAuthenticationObject(username, password);
 
-    SecurityContextHandler.setAuthentication(userAuthenticationObject);
+    SecurityContextHandler.setAuthentication(authentication);
   }
 }
