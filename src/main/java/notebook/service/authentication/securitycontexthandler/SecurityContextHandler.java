@@ -1,6 +1,7 @@
 package notebook.service.authentication.securitycontexthandler;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 public class SecurityContextHandler {
   private Authentication authentication;
@@ -10,6 +11,6 @@ public class SecurityContextHandler {
   }
 
   public void setSecurityContext() {
-    notebook.service.common.SecurityContextHandler.setAuthentication(this.authentication);
+    SecurityContextHolder.getContext().setAuthentication(this.authentication);
   }
 }
