@@ -1,7 +1,7 @@
 package notebook.service.authentication.updatesecuritycontext;
 
 import notebook.factory.AuthenticationFactory;
-import notebook.service.common.SecurityContextHandler;
+import notebook.service.authentication.securitycontexthandler.SecurityContextHandler;
 import org.springframework.security.core.Authentication;
 
 import notebook.entity.User;
@@ -11,6 +11,7 @@ public interface SecurityContextService {
 		AuthenticationFactory authenticationFactory = new AuthenticationFactory();
 		Authentication authentication = authenticationFactory.getAuthenticationObject(userForUpdate);
 
-		SecurityContextHandler.setAuthentication(authentication);
+		SecurityContextHandler securityContextHandler = new SecurityContextHandler(authentication);
+		securityContextHandler.setSecurityContext();
 	}
 }
