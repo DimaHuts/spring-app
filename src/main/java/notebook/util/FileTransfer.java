@@ -8,8 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 
 public abstract class FileTransfer {
-  public static void transferIntoTargetLocation(MultipartFile file) throws IOException {
-    Path targetLocation = FileStorageLocationResolver.resolveFileStorageLocation();
+  public static void transferIntoTargetLocation(MultipartFile file, Path targetLocation) throws IOException {
     Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
   }
 }
