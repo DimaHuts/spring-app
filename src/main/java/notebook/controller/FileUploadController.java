@@ -13,6 +13,6 @@ public class FileUploadController {
   public String handleFileUpload(@RequestParam("file") MultipartFile file) {
     StorageService storageService = BeanProvider.getBean(StorageService.class);
 
-    return storageService.tryToStore(file);
+    return storageService.storeFile(file);
   }
 }
