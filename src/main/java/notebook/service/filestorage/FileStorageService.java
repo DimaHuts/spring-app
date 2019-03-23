@@ -3,10 +3,7 @@ package notebook.service.filestorage;
 import notebook.exception.FileNotFoundException;
 import notebook.property.FileStorageProperties;
 import notebook.service.common.BeanProvider;
-import notebook.util.DirCreator;
-import notebook.util.FileName;
-import notebook.util.FileTransfer;
-import notebook.util.LocationConverter;
+import notebook.util.*;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
@@ -30,7 +27,7 @@ public class FileStorageService implements StorageService {
     DirCreator.create(this.targetPath);
 
     String normalizedFileName = FileName.normalizeFileName(file.getOriginalFilename());
-    Path targetLocation = this.targetPath.resolve(normalizedFileName);
+    Path targetLocation = FileResolver.resolveFileForLocation(this.targetPath, normalizedFileName);
 
     FileTransfer.transferIntoTargetLocation(file, targetLocation);
 
@@ -39,7 +36,7 @@ public class FileStorageService implements StorageService {
 
   private Resource getFile(String fileName) throws MalformedURLException {
     String normalizedFileName = FileName.normalizeFileName(fileName);
-    Path filePath  = this.targetPath.resolve(normalizedFileName);
+    Path filePath = FileResolver.resolveFileForLocation(this.targetPath, normalizedFileName);
 
     return new UrlResource(filePath.toUri());
   }
