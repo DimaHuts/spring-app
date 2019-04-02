@@ -35,10 +35,17 @@ public class FileStorageService implements StorageService {
   }
 
   private Resource getFile(String fileName) throws MalformedURLException {
-    String normalizedFileName = FileName.normalizeFileName(fileName);
-    Path filePath = FileResolver.resolveFileForLocation(this.targetPath, normalizedFileName);
-
-    return new UrlResource(filePath.toUri());
+//    String normalizedFileName = FileName.normalizeFileName(fileName);
+//    Path filePath = FileResolver.resolveFileForLocation(this.targetPath, normalizedFileName);
+//
+//    return new UrlResource(filePath.toUri());
+    Path filePath = this.targetPath.resolve(fileName).normalize();
+    Resource resource = new UrlResource(filePath.toUri());
+    if(resource.exists()) {
+      return resource;
+    } else {
+      throw new MalformedURLException ();
+    }
   }
 
   @Override
@@ -46,7 +53,7 @@ public class FileStorageService implements StorageService {
     try {
       return this.getFile(fileName);
     } catch (MalformedURLException ex) {
-      throw new FileNotFoundException("File not found" + fileName, ex);
+      throw new FileNotFoundException("File not found " + fileName, ex);
     }
   }
 }
