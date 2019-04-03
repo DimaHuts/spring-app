@@ -26,20 +26,17 @@ public class FileStorageService implements StorageService {
   public String storeFile(MultipartFile file) {
     DirCreator.create(this.targetPath);
 
-    String normalizedFileName = FileName.normalizeFileName(file.getOriginalFilename());
-    Path targetLocation = FileResolver.resolveFileForLocation(this.targetPath, normalizedFileName);
+    String originalFileName = file.getOriginalFilename();
+    Path targetLocation = FileResolver.resolveFileForLocation(this.targetPath, originalFileName);
 
     FileTransfer.transferIntoTargetLocation(file, targetLocation);
 
-    return normalizedFileName;
+    return originalFileName;
   }
 
   private Resource getFile(String fileName) throws MalformedURLException {
-//    String normalizedFileName = FileName.normalizeFileName(fileName);
-//    Path filePath = FileResolver.resolveFileForLocation(this.targetPath, normalizedFileName);
-//
-//    return new UrlResource(filePath.toUri());
-    Path filePath = this.targetPath.resolve(fileName).normalize();
+    Path filePath = FileResolver.resolveFileForLocation(this.targetPath, fileName);
+
     Resource resource = new UrlResource(filePath.toUri());
     if(resource.exists()) {
       return resource;
