@@ -3,7 +3,6 @@ package notebook.controller;
 import notebook.service.common.BeanProvider;
 import notebook.service.filestorage.StorageService;
 import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.nio.file.Files;
 
 @RestController
 @RequestMapping("/api/file")
@@ -31,7 +31,7 @@ public class FileUploadController {
 
     String contentType = null;
     try {
-      contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
+      contentType = Files.probeContentType(resource.getFile().toPath());
     } catch (IOException e) {
       e.printStackTrace();
     }
