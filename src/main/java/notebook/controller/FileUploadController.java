@@ -2,15 +2,13 @@ package notebook.controller;
 
 import notebook.service.common.BeanProvider;
 import notebook.service.filestorage.StorageService;
+import notebook.util.resource.ResourceContentType;
+import notebook.util.resource.ResourceContentTypeImpl;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.nio.file.Files;
 
 @RestController
 @RequestMapping("/api/file")
@@ -24,21 +22,13 @@ public class FileUploadController {
   }
 
   @GetMapping("/get/{fileName:.+}")
-  public ResponseEntity<Resource> getFile(@PathVariable String fileName, HttpServletRequest request) {
+  public ResponseEntity<Resource> getFile(@PathVariable String fileName) {
     StorageService storageService = BeanProvider.getBean(StorageService.class);
 
     Resource resource = storageService.tryToGetFile(fileName);
+    ResourceContentType resourceContentType = new ResourceContentTypeImpl(resource);
 
-    String contentType = null;
-    try {
-      contentType = Files.probeContentType(resource.getFile().toPath());
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-
-    if(contentType == null) {
-      contentType = "application/octet-stream";
-    }
+    String contentType = resourceContentType.getContentType();
 
     return ResponseEntity.ok()
       .contentType(MediaType.parseMediaType(contentType))
