@@ -10,6 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/api/file")
 public class FileUploadController {
@@ -19,6 +23,13 @@ public class FileUploadController {
     StorageService storageService = BeanProvider.getBean(StorageService.class);
 
     return storageService.storeFile(file);
+  }
+
+  @PostMapping("/uploadMultipleFiles")
+  public List<String> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
+    return Arrays.stream(files)
+      .map(this::handleFileUpload)
+      .collect(Collectors.toList());
   }
 
   @GetMapping("/get/{fileName:.+}")
