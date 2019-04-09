@@ -23,7 +23,7 @@ public class ProductController {
 		return findAllProductsService.findAll();
 	}
 
-	@PostMapping("/create/")
+	@PostMapping("/create")
 	public Product createProduct(@RequestBody Product product) {
 		ProductService productService = BeanProvider.getBean(ProductService.class);
 
@@ -38,7 +38,7 @@ public class ProductController {
 	}
 
 	@PostMapping("/delete")
-	public long updatePatient(@RequestBody DeleteByIdRequestWrapper requestWrapper) {
+	public long deleteProduct(@RequestBody DeleteByIdRequestWrapper requestWrapper) {
 		ProductService productService = BeanProvider.getBean(ProductService.class);
 
 		return productService.deleteProduct(requestWrapper.getId());

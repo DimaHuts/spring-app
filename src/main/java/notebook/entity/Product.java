@@ -16,6 +16,8 @@ public class Product {
 
 	private double price;
 
+	private String[] images;
+
 	@ManyToOne(
 		fetch = FetchType.LAZY,
 		optional = false
@@ -36,11 +38,12 @@ public class Product {
 
 	public Product() {}
 
-	public Product(String name, String description, double price, Set<ProductCategory> categories) {
+	public Product(String name, String description, double price, Set<ProductCategory> categories, String[] images) {
 		this.name = name;
 		this.description = description;
 		this.price = price;
 		this.categories = categories;
+		this.images = images;
 	}
 
 	public long getId() {
@@ -89,5 +92,13 @@ public class Product {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public String[] getImages() {
+		return images;
+	}
+
+	public void setImages(String[] images) {
+		this.images = images;
 	}
 }

@@ -16,4 +16,10 @@ public class ProductConfigurer {
     User currentUser = CurrentUserFetcher.getCurrentUser();
     product.setUser(currentUser);
   }
+
+  @Before("execution(* notebook.controller.ProductController.updateProduct(..)) && args(product)")
+  public void configureProductBeforeUpdating(Product product) {
+    User currentUser = CurrentUserFetcher.getCurrentUser();
+    product.setUser(currentUser);
+  }
 }
