@@ -19,6 +19,8 @@ public class User {
 
   private String lastName;
 
+  private String imageName;
+
   @OneToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "userRole")
   private Role role;
@@ -99,5 +101,13 @@ public class User {
 
   public void setRole(Role role) {
     this.role = role;
+  }
+
+  public String getImageName() {
+    return imageName;
+  }
+
+  public void setImageName(String imageName) {
+    this.imageName = imageName;
   }
 }
