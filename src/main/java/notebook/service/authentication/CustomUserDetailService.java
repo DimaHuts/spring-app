@@ -4,6 +4,7 @@ import notebook.entity.User;
 import notebook.factory.SecurityUserInterface;
 import notebook.service.common.BeanProvider;
 import notebook.service.user.finduserbyemail.FindUserByEmailService;
+import notebook.service.user.getuserbyid.GetUserByIdService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -23,4 +24,12 @@ public class CustomUserDetailService implements UserDetailsService {
     return securityUserInterface.getConfiguredSecurityUser(user);
   }
 
+  public UserDetails loadUserById(Long id) {
+    GetUserByIdService getUserByIdService = BeanProvider.getBean(GetUserByIdService.class);
+
+    User user = getUserByIdService.getUserById(id);
+
+    SecurityUserInterface securityUserInterface = BeanProvider.getBean(SecurityUserInterface.class);
+    return securityUserInterface.getConfiguredSecurityUser(user);
+  }
 }

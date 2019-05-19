@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableConfigurationProperties({
-        FileStorageProperties.class
+  FileStorageProperties.class
 })
-public class FileUploadConfiguration {
+public class FileUploadConfig {
 }
