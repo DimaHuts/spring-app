@@ -22,11 +22,6 @@ public class JwtTokenProvider {
   private static final Long jwtExpirationInMs = 604800000L;
 
   public String generateToken(Authentication authentication) {
-
-//    User userPrincipal = CurrentUserFetcher.getCurrentUser();
-
-//    SecurityContext securityContext = SecurityContextHolder.getContext();
-
     String userPrincipal = (String) authentication.getPrincipal();
 
     Date now = new Date();
