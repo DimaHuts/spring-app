@@ -2,6 +2,8 @@ package notebook.security.jwt;
 
 import notebook.service.authentication.CustomUserDetailService;
 import notebook.service.common.BeanProvider;
+import notebook.util.jwt.JwtTokenProvider;
+import notebook.util.jwt.JwtTokenValidator;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,11 +26,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
       String jwt = getJwtFromRequest(httpServletRequest);
 
       JwtTokenProvider tokenProvider = BeanProvider.getBean(JwtTokenProvider.class);
-      CustomUserDetailService customUserDetailsService = BeanProvider.getBean(CustomUserDetailService.class);
+      JwtTokenValidator jwtTokenValidator = BeanProvider.getBean(JwtTokenValidator.class);
 
-      if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
+      if (StringUtils.hasText(jwt) && jwtTokenValidator.validateToken(jwt)) {
         String userEmail = tokenProvider.getUserIdFromJWT(jwt);
 
+        CustomUserDetailService customUserDetailsService = BeanProvider.getBean(CustomUserDetailService.class);
         UserDetails userDetails = customUserDetailsService.loadUserByUsername(userEmail);
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
         authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
