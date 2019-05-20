@@ -1,14 +1,11 @@
 package notebook.security.jwt;
 
 import io.jsonwebtoken.*;
-import notebook.entity.User;
-import notebook.service.common.CurrentUserFetcher;
+import notebook.property.JWTProperties;
+import notebook.service.common.BeanProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -18,14 +15,16 @@ public class JwtTokenProvider {
 
   private static final Logger logger = LoggerFactory.getLogger(JwtTokenProvider.class);
 
-  private static final String jwtSecret = "JWTSuperSecretKey";
-  private static final Long jwtExpirationInMs = 604800000L;
-
   public String generateToken(Authentication authentication) {
     String userPrincipal = (String) authentication.getPrincipal();
 
+    JWTProperties jwtProperties = BeanProvider.getBean(JWTProperties.class);
+    long jwtExpirationInMs = jwtProperties.getExpirationInMs();
+
     Date now = new Date();
     Date expiryDate = new Date(now.getTime() + jwtExpirationInMs);
+
+    String jwtSecret = jwtProperties.getSecret();
 
     return Jwts.builder()
       .setSubject(userPrincipal)
@@ -36,6 +35,10 @@ public class JwtTokenProvider {
   }
 
   String getUserIdFromJWT(String token) {
+    JWTProperties jwtProperties = BeanProvider.getBean(JWTProperties.class);
+
+    String jwtSecret = jwtProperties.getSecret();
+
     Claims claims = Jwts.parser()
       .setSigningKey(jwtSecret)
       .parseClaimsJws(token)
@@ -45,6 +48,10 @@ public class JwtTokenProvider {
   }
 
   public boolean validateToken(String authToken) {
+    JWTProperties jwtProperties = BeanProvider.getBean(JWTProperties.class);
+
+    String jwtSecret = jwtProperties.getSecret();
+
     try {
       Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
       return true;
